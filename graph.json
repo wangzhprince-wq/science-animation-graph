@@ -4,307 +4,358 @@
       "id": "46亿年",
       "type": "concept",
       "label": "46亿年",
-      "desc": "地球年龄"
+      "desc": "地球年龄",
+      "time": -4600000000
     },
     {
       "id": "冥古宙",
       "type": "concept",
       "label": "冥古宙",
-      "desc": "地球形成期"
+      "desc": "地球形成期",
+      "time": -4000000000
     },
     {
       "id": "太古宙",
       "type": "concept",
       "label": "太古宙",
-      "desc": "最早生命"
+      "desc": "最早生命",
+      "time": -3500000000
     },
     {
       "id": "显生宙",
       "type": "concept",
       "label": "显生宙",
-      "desc": "生命大爆发"
+      "desc": "生命大爆发",
+      "time": -540000000
     },
     {
       "id": "前寒武纪",
       "type": "concept",
       "label": "前寒武纪",
-      "desc": "院士研究领域"
+      "desc": "院士研究领域",
+      "time": -4000000000
     },
     {
       "id": "均变论",
       "type": "concept",
       "label": "均变论",
-      "desc": "莱伊尔核心"
+      "desc": "莱伊尔核心",
+      "time": 1830
     },
     {
       "id": "灾变论",
       "type": "concept",
       "label": "灾变论",
-      "desc": "神创论的对手"
+      "desc": "神创论的对手",
+      "time": 1825
     },
     {
       "id": "将今论古",
       "type": "concept",
       "label": "将今论古",
-      "desc": "方法论：现在=过去之钥"
+      "desc": "方法论：现在=过去之钥",
+      "time": 1830
     },
     {
       "id": "K-Pg边界",
       "type": "concept",
       "label": "K-Pg边界",
-      "desc": "恐龙灭绝层"
+      "desc": "恐龙灭绝层",
+      "time": -66000000
     },
     {
       "id": "小行星撞击",
       "type": "concept",
       "label": "小行星撞击",
-      "desc": "6600万年前"
+      "desc": "6600万年前",
+      "time": -66000000
     },
     {
       "id": "板块构造",
       "type": "concept",
       "label": "板块构造",
-      "desc": "地球的运动"
+      "desc": "地球的运动",
+      "time": 1968
     },
     {
       "id": "人类世",
       "type": "concept",
       "label": "人类世",
-      "desc": "人类改变地球"
+      "desc": "人类改变地球",
+      "time": 1950
     },
     {
       "id": "未来地质学",
       "type": "concept",
       "label": "未来地质学",
-      "desc": "院士提出"
+      "desc": "院士提出",
+      "time": 2026
     },
     {
       "id": "地幔对流",
       "type": "concept",
       "label": "地幔对流",
-      "desc": "板块运动驱动"
+      "desc": "板块运动驱动",
+      "time": 1960
     },
     {
       "id": "岩浆运动",
       "type": "concept",
       "label": "岩浆运动",
-      "desc": "地球代谢"
+      "desc": "地球代谢",
+      "time": -100000000
     },
     {
       "id": "尤卡坦陨石坑",
       "type": "concept",
       "label": "尤卡坦陨石坑",
-      "desc": "撞击证据"
+      "desc": "撞击证据",
+      "time": -66000000
     },
     {
       "id": "阿尔瓦雷斯理论",
       "type": "concept",
       "label": "阿尔瓦雷斯理论",
-      "desc": "撞击灭绝假说"
+      "desc": "撞击灭绝假说",
+      "time": 1980
     },
     {
       "id": "铱异常",
       "type": "concept",
       "label": "铱异常",
-      "desc": "地外元素证据"
+      "desc": "地外元素证据",
+      "time": -66000000
     },
     {
       "id": "古比奥峡谷",
       "type": "concept",
       "label": "古比奥峡谷",
-      "desc": "K-Pg边界典型剖面"
+      "desc": "K-Pg边界典型剖面",
+      "time": -66000000
     },
     {
       "id": "博物馆矿物",
       "type": "concept",
       "label": "博物馆矿物",
-      "desc": "地质学材料"
+      "desc": "地质学材料",
+      "time": 1800
     },
     {
       "id": "岩石薄片",
       "type": "concept",
       "label": "岩石薄片",
-      "desc": "显微镜研究"
+      "desc": "显微镜研究",
+      "time": 1850
     },
     {
       "id": "地貌学",
       "type": "concept",
       "label": "地貌学",
-      "desc": "侵蚀/沉积"
+      "desc": "侵蚀/沉积",
+      "time": 1800
     },
     {
       "id": "化石记录",
       "type": "concept",
       "label": "化石记录",
-      "desc": "地质年代的档案"
+      "desc": "地质年代的档案",
+      "time": -500000000
     },
     {
       "id": "莱伊尔",
       "type": "person",
       "label": "查尔斯·莱伊尔",
-      "desc": "地质学之父"
+      "desc": "地质学之父",
+      "time": 1830
     },
     {
       "id": "达尔文",
       "type": "person",
       "label": "达尔文",
-      "desc": "受莱伊尔启发"
+      "desc": "受莱伊尔启发",
+      "time": 1859
     },
     {
       "id": "诺尔",
       "type": "person",
       "label": "安德鲁·诺尔",
-      "desc": "《地球简史》作者"
+      "desc": "《地球简史》作者",
+      "time": 2017
     },
     {
       "id": "阿尔瓦雷斯父子",
       "type": "person",
       "label": "阿尔瓦雷斯父子",
-      "desc": "撞击理论提出者"
+      "desc": "撞击理论提出者",
+      "time": 1980
     },
     {
       "id": "翟明国",
       "type": "person",
       "label": "翟明国院士",
-      "desc": "前寒武纪地质学家"
+      "desc": "前寒武纪地质学家",
+      "time": 2026
     },
     {
       "id": "地质学原理",
       "type": "book",
       "label": "《地质学原理》",
-      "desc": "莱伊尔，1830"
+      "desc": "莱伊尔，1830",
+      "time": 1830
     },
     {
       "id": "地球简史",
       "type": "book",
       "label": "《地球简史》",
-      "desc": "诺尔，2017"
+      "desc": "诺尔，2017",
+      "time": 2017
     },
     {
       "id": "物种起源",
       "type": "book",
       "label": "《物种起源》",
-      "desc": "达尔文，1859"
+      "desc": "达尔文，1859",
+      "time": 1859
     },
     {
       "id": "小猎犬号",
       "type": "event",
       "label": "小猎犬号航行",
-      "desc": "1831-1836"
+      "desc": "1831-1836",
+      "time": 1831
     },
     {
       "id": "K-Pg灭绝",
       "type": "event",
       "label": "恐龙大灭绝",
-      "desc": "6600万年前"
+      "desc": "6600万年前",
+      "time": -66000000
     },
     {
       "id": "寒武纪爆发",
       "type": "event",
       "label": "寒武纪生命大爆发",
-      "desc": "5.4亿年前"
+      "desc": "5.4亿年前",
+      "time": -540000000
     },
     {
       "id": "大氧化事件",
       "type": "event",
       "label": "大氧化事件",
-      "desc": "24亿年前"
+      "desc": "24亿年前",
+      "time": -2400000000
     },
     {
       "id": "第一章",
       "type": "episode",
       "label": "第一章",
-      "desc": "莱伊尔之眼"
+      "desc": "莱伊尔之眼",
+      "time": 1830
     },
     {
       "id": "第二章",
       "type": "episode",
       "label": "第二章",
-      "desc": "诺尔邀请函"
+      "desc": "诺尔邀请函",
+      "time": 2017
     },
     {
       "id": "第三章",
       "type": "episode",
       "label": "第三章",
-      "desc": "运动着的地球"
+      "desc": "运动着的地球",
+      "time": 2026
     },
     {
       "id": "序章",
       "type": "episode",
       "label": "序章",
-      "desc": "金句Intro"
+      "desc": "金句Intro",
+      "time": 2026
     },
     {
       "id": "结尾",
       "type": "episode",
       "label": "结尾",
-      "desc": "读地球的人"
+      "desc": "读地球的人",
+      "time": 2026
     },
     {
       "id": "AI动画-河流侵蚀",
       "type": "media",
       "label": "AI动画：河流侵蚀",
-      "desc": "均变论演示"
+      "desc": "均变论演示",
+      "time": 2026
     },
     {
       "id": "AI动画-板块运动",
       "type": "media",
       "label": "AI动画：板块运动",
-      "desc": "第三章需求"
+      "desc": "第三章需求",
+      "time": 2026
     },
     {
       "id": "AI动画-撞击地球",
       "type": "media",
       "label": "AI动画：小行星撞击",
-      "desc": "K-Pg演示"
+      "desc": "K-Pg演示",
+      "time": 2026
     },
     {
       "id": "AI动画-地幔对流",
       "type": "media",
       "label": "AI动画：地幔对流",
-      "desc": "地球内部"
+      "desc": "地球内部",
+      "time": 2026
     },
     {
       "id": "AI动画-24小时时钟",
       "type": "media",
       "label": "AI动画：46亿年时钟",
-      "desc": "时间尺度可视化"
+      "desc": "时间尺度可视化",
+      "time": 2026
     },
     {
       "id": "资料画面-古比奥",
       "type": "media",
       "label": "资料：古比奥峡谷",
-      "desc": "K-Pg边界实景"
+      "desc": "K-Pg边界实景",
+      "time": 2026
     },
     {
       "id": "资料画面-陨石坑",
       "type": "media",
       "label": "资料：尤卡坦陨石坑",
-      "desc": "撞击证据地图"
+      "desc": "撞击证据地图",
+      "time": 2026
     },
     {
       "id": "资料画面-达尔文",
       "type": "media",
       "label": "资料：达尔文/小猎犬号",
-      "desc": "历史资料"
+      "desc": "历史资料",
+      "time": 2026
     },
     {
       "id": "院士采访",
       "type": "media",
       "label": "院士采访画面",
-      "desc": "核心素材"
+      "desc": "核心素材",
+      "time": 2026
     },
     {
       "id": "院士野外",
       "type": "media",
       "label": "院士野外考察",
-      "desc": "实地工作"
+      "desc": "实地工作",
+      "time": 2026
     },
     {
       "id": "院士研究",
       "type": "concept",
       "label": "院士研究",
-      "desc": "翟明国院士的研究方向：前寒武纪地质学、变质地质学、板块构造"
+      "desc": "翟明国院士的研究方向：前寒武纪地质学、变质地质学、板块构造",
+      "time": 2026
     }
   ],
   "edges": [
