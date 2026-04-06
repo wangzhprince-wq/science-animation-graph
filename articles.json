@@ -1,0 +1,466 @@
+{
+  "total": 51,
+  "articles": [
+    {
+      "nodeId": "46亿年",
+      "nodeLabel": "46亿年",
+      "nodeType": "concept",
+      "articlePath": "",
+      "articleTitle": "46亿年（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": -4600000000
+    },
+    {
+      "nodeId": "冥古宙",
+      "nodeLabel": "冥古宙",
+      "nodeType": "concept",
+      "articlePath": "",
+      "articleTitle": "冥古宙（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": -4000000000
+    },
+    {
+      "nodeId": "前寒武纪",
+      "nodeLabel": "前寒武纪",
+      "nodeType": "concept",
+      "articlePath": "",
+      "articleTitle": "前寒武纪（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": -4000000000
+    },
+    {
+      "nodeId": "太古宙",
+      "nodeLabel": "太古宙",
+      "nodeType": "concept",
+      "articlePath": "",
+      "articleTitle": "太古宙（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": -3500000000
+    },
+    {
+      "nodeId": "大氧化事件",
+      "nodeLabel": "大氧化事件",
+      "nodeType": "event",
+      "articlePath": "",
+      "articleTitle": "大氧化事件（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": -2400000000
+    },
+    {
+      "nodeId": "显生宙",
+      "nodeLabel": "显生宙",
+      "nodeType": "concept",
+      "articlePath": "",
+      "articleTitle": "显生宙（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": -540000000
+    },
+    {
+      "nodeId": "寒武纪爆发",
+      "nodeLabel": "寒武纪生命大爆发",
+      "nodeType": "event",
+      "articlePath": "",
+      "articleTitle": "寒武纪生命大爆发（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": -540000000
+    },
+    {
+      "nodeId": "化石记录",
+      "nodeLabel": "化石记录",
+      "nodeType": "concept",
+      "articlePath": "",
+      "articleTitle": "化石记录（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": -500000000
+    },
+    {
+      "nodeId": "岩浆运动",
+      "nodeLabel": "岩浆运动",
+      "nodeType": "concept",
+      "articlePath": "",
+      "articleTitle": "岩浆运动（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": -100000000
+    },
+    {
+      "nodeId": "K-Pg边界",
+      "nodeLabel": "K-Pg边界",
+      "nodeType": "concept",
+      "articlePath": "knowledge/02-核心概念/K-Pg边界-深度.md",
+      "articleTitle": "K-Pg边界 - 深度解析",
+      "summary": "# K-Pg边界：恐龙时代的终结与科学侦探故事\n\n## 什么叫K-Pg边界：白垩纪和古近纪的分界线\n\nK-Pg边界（Cretaceous–Paleogene boundary），原名K-T边界（Cretaceous–Tertiary boundary），是地质时间尺度上一个至关重要的分界线。它标志着**白垩纪**（Cretaceous Period）的结束和**古近纪**（Paleogene Pe...",
+      "time": -66000000
+    },
+    {
+      "nodeId": "小行星撞击",
+      "nodeLabel": "小行星撞击",
+      "nodeType": "concept",
+      "articlePath": "",
+      "articleTitle": "小行星撞击（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": -66000000
+    },
+    {
+      "nodeId": "尤卡坦陨石坑",
+      "nodeLabel": "尤卡坦陨石坑",
+      "nodeType": "concept",
+      "articlePath": "knowledge/02-核心概念/K-Pg边界-深度.md",
+      "articleTitle": "尤卡坦陨石坑 - 深度解析",
+      "summary": "# K-Pg边界：恐龙时代的终结与科学侦探故事\n\n## 什么叫K-Pg边界：白垩纪和古近纪的分界线\n\nK-Pg边界（Cretaceous–Paleogene boundary），原名K-T边界（Cretaceous–Tertiary boundary），是地质时间尺度上一个至关重要的分界线。它标志着**白垩纪**（Cretaceous Period）的结束和**古近纪**（Paleogene Pe...",
+      "time": -66000000
+    },
+    {
+      "nodeId": "铱异常",
+      "nodeLabel": "铱异常",
+      "nodeType": "concept",
+      "articlePath": "knowledge/02-核心概念/K-Pg边界-深度.md",
+      "articleTitle": "铱异常 - 深度解析",
+      "summary": "# K-Pg边界：恐龙时代的终结与科学侦探故事\n\n## 什么叫K-Pg边界：白垩纪和古近纪的分界线\n\nK-Pg边界（Cretaceous–Paleogene boundary），原名K-T边界（Cretaceous–Tertiary boundary），是地质时间尺度上一个至关重要的分界线。它标志着**白垩纪**（Cretaceous Period）的结束和**古近纪**（Paleogene Pe...",
+      "time": -66000000
+    },
+    {
+      "nodeId": "古比奥峡谷",
+      "nodeLabel": "古比奥峡谷",
+      "nodeType": "concept",
+      "articlePath": "knowledge/02-核心概念/K-Pg边界-深度.md",
+      "articleTitle": "古比奥峡谷 - 深度解析",
+      "summary": "# K-Pg边界：恐龙时代的终结与科学侦探故事\n\n## 什么叫K-Pg边界：白垩纪和古近纪的分界线\n\nK-Pg边界（Cretaceous–Paleogene boundary），原名K-T边界（Cretaceous–Tertiary boundary），是地质时间尺度上一个至关重要的分界线。它标志着**白垩纪**（Cretaceous Period）的结束和**古近纪**（Paleogene Pe...",
+      "time": -66000000
+    },
+    {
+      "nodeId": "K-Pg灭绝",
+      "nodeLabel": "恐龙大灭绝",
+      "nodeType": "event",
+      "articlePath": "",
+      "articleTitle": "恐龙大灭绝（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": -66000000
+    },
+    {
+      "nodeId": "博物馆矿物",
+      "nodeLabel": "博物馆矿物",
+      "nodeType": "concept",
+      "articlePath": "",
+      "articleTitle": "博物馆矿物（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": 1800
+    },
+    {
+      "nodeId": "地貌学",
+      "nodeLabel": "地貌学",
+      "nodeType": "concept",
+      "articlePath": "",
+      "articleTitle": "地貌学（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": 1800
+    },
+    {
+      "nodeId": "灾变论",
+      "nodeLabel": "灾变论",
+      "nodeType": "concept",
+      "articlePath": "knowledge/05-历史脉络/04-科学方法论演变.md",
+      "articleTitle": "灾变论 - 深度解析",
+      "summary": "# 科学方法论演变：从神创论到现代地质学\n\n> 地质学思维方式的革命性转变\n\n## 引言：为什么方法论重要\n\n地质学的发展不仅是知识的积累，更是思维方式的革命。每一次方法论突破都带来了对地球认知的根本性改变。\n\n## 第一阶段：神学解释时期（17世纪前）\n\n### 特征\n- **解释框架**：宗教教义主导\n- **时间尺度**：圣经推算的6000年地球历史\n- **变化机制**：神迹、大洪水等超自...",
+      "time": 1825
+    },
+    {
+      "nodeId": "均变论",
+      "nodeLabel": "均变论",
+      "nodeType": "concept",
+      "articlePath": "knowledge/02-核心概念/均变论-深度.md",
+      "articleTitle": "均变论 - 深度解析",
+      "summary": "# 均变论：地质学的哲学革命\n\n## 思想史背景：18-19世纪科学革命\n\n均变论（Uniformitarianism）的诞生并非偶然，它深深植根于18世纪末至19世纪初的科学革命浪潮中。这一时期，欧洲经历了启蒙运动的洗礼，理性主义逐渐取代神学解释成为认识世界的主流方式。自然科学开始从哲学和神学的束缚中解放出来，形成了独立的学科体系。\n\n在这一背景下，地质学作为一门新兴学科面临着根本性的方法论问题...",
+      "time": 1830
+    },
+    {
+      "nodeId": "将今论古",
+      "nodeLabel": "将今论古",
+      "nodeType": "concept",
+      "articlePath": "knowledge/05-历史脉络/04-科学方法论演变.md",
+      "articleTitle": "将今论古 - 深度解析",
+      "summary": "# 科学方法论演变：从神创论到现代地质学\n\n> 地质学思维方式的革命性转变\n\n## 引言：为什么方法论重要\n\n地质学的发展不仅是知识的积累，更是思维方式的革命。每一次方法论突破都带来了对地球认知的根本性改变。\n\n## 第一阶段：神学解释时期（17世纪前）\n\n### 特征\n- **解释框架**：宗教教义主导\n- **时间尺度**：圣经推算的6000年地球历史\n- **变化机制**：神迹、大洪水等超自...",
+      "time": 1830
+    },
+    {
+      "nodeId": "莱伊尔",
+      "nodeLabel": "查尔斯·莱伊尔",
+      "nodeType": "person",
+      "articlePath": "knowledge/03-人物档案/莱伊尔-全传.md",
+      "articleTitle": "查尔斯·莱伊尔 - 深度解析",
+      "summary": "# 莱伊尔-全传\n\n## 早年生活和教育背景（1797年英国出生）\n\n查尔斯·莱伊尔（Charles Lyell，1797-1875）出生于苏格兰福法尔郡的金诺迪，是英国地质学的奠基人之一。他的父亲是一位富有的地主和植物学家，这使得莱伊尔从小就接触到了自然科学。1816年，莱伊尔进入牛津大学埃克塞特学院学习古典文学，但他对地质学的兴趣逐渐增长，尤其是受到威廉·巴克兰教授的影响。\n\n## 地质学之前...",
+      "time": 1830
+    },
+    {
+      "nodeId": "地质学原理",
+      "nodeLabel": "《地质学原理》",
+      "nodeType": "book",
+      "articlePath": "knowledge/04-书籍导读/地质学原理-深度解读.md",
+      "articleTitle": "《地质学原理》 - 深度解析",
+      "summary": "# 《地质学原理》深度解读\n\n## 书籍基本信息\n\n**书名**：《地质学原理》（Principles of Geology）\n**作者**：查尔斯·莱伊尔（Charles Lyell）\n**出版时间**：1830-1833年（三卷本）\n**语言**：英文\n**字数**：约150万字（三卷合计）\n**地位**：现代地质学的奠基之作，科学史上的里程碑\n\n## 第一卷核心：从野外观察出发建立均变论\n\n...",
+      "time": 1830
+    },
+    {
+      "nodeId": "第一章",
+      "nodeLabel": "第一章",
+      "nodeType": "episode",
+      "articlePath": "knowledge/06-纪录片支撑/02-第一章知识支撑.md",
+      "articleTitle": "第一章 - 深度解析",
+      "summary": "# 第一章知识支撑\n\n## 莱伊尔的生平背景：为什么他的故事重要\n\n### 查尔斯·莱伊尔（1797-1875）：地质学的革命者\n莱伊尔出生于苏格兰贵族家庭，原本学习法律，但对地质学的热爱让他放弃了律师生涯。他的重要性在于：\n\n1. **时代背景**：19世纪初的地质学处于混乱状态，\"灾变论\"主导着学界，认为地球历史由一系列突然的全球性灾难塑造\n2. **个人特质**：莱伊尔具备律师的逻辑思维和地...",
+      "time": 1830
+    },
+    {
+      "nodeId": "小猎犬号",
+      "nodeLabel": "小猎犬号航行",
+      "nodeType": "event",
+      "articlePath": "",
+      "articleTitle": "小猎犬号航行（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": 1831
+    },
+    {
+      "nodeId": "岩石薄片",
+      "nodeLabel": "岩石薄片",
+      "nodeType": "concept",
+      "articlePath": "",
+      "articleTitle": "岩石薄片（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": 1850
+    },
+    {
+      "nodeId": "达尔文",
+      "nodeLabel": "达尔文",
+      "nodeType": "person",
+      "articlePath": "",
+      "articleTitle": "达尔文（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": 1859
+    },
+    {
+      "nodeId": "物种起源",
+      "nodeLabel": "《物种起源》",
+      "nodeType": "book",
+      "articlePath": "",
+      "articleTitle": "《物种起源》（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": 1859
+    },
+    {
+      "nodeId": "人类世",
+      "nodeLabel": "人类世",
+      "nodeType": "concept",
+      "articlePath": "knowledge/02-核心概念/人类世-深度.md",
+      "articleTitle": "人类世 - 深度解析",
+      "summary": "# 人类世：地球历史的新篇章\n\n## 人类世的定义：人类成为改变地球的主导力量\n\n**人类世**（Anthropocene）是一个提议中的地质时代，指人类活动成为影响地球系统**主导力量**的时期。这个概念由诺贝尔化学奖得主保罗·克鲁岑（Paul Crutzen）于2000年首次明确提出，但思想渊源可以追溯到更早。\n\n人类世的核心观点是：人类不再是地球系统中的一个普通物种，而是成为了**地质营力*...",
+      "time": 1950
+    },
+    {
+      "nodeId": "地幔对流",
+      "nodeLabel": "地幔对流",
+      "nodeType": "concept",
+      "articlePath": "",
+      "articleTitle": "地幔对流（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": 1960
+    },
+    {
+      "nodeId": "板块构造",
+      "nodeLabel": "板块构造",
+      "nodeType": "concept",
+      "articlePath": "",
+      "articleTitle": "板块构造（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": 1968
+    },
+    {
+      "nodeId": "阿尔瓦雷斯理论",
+      "nodeLabel": "阿尔瓦雷斯理论",
+      "nodeType": "concept",
+      "articlePath": "knowledge/02-核心概念/K-Pg边界-深度.md",
+      "articleTitle": "阿尔瓦雷斯理论 - 深度解析",
+      "summary": "# K-Pg边界：恐龙时代的终结与科学侦探故事\n\n## 什么叫K-Pg边界：白垩纪和古近纪的分界线\n\nK-Pg边界（Cretaceous–Paleogene boundary），原名K-T边界（Cretaceous–Tertiary boundary），是地质时间尺度上一个至关重要的分界线。它标志着**白垩纪**（Cretaceous Period）的结束和**古近纪**（Paleogene Pe...",
+      "time": 1980
+    },
+    {
+      "nodeId": "阿尔瓦雷斯父子",
+      "nodeLabel": "阿尔瓦雷斯父子",
+      "nodeType": "person",
+      "articlePath": "",
+      "articleTitle": "阿尔瓦雷斯父子（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": 1980
+    },
+    {
+      "nodeId": "诺尔",
+      "nodeLabel": "安德鲁·诺尔",
+      "nodeType": "person",
+      "articlePath": "knowledge/03-人物档案/诺尔-全传.md",
+      "articleTitle": "安德鲁·诺尔 - 深度解析",
+      "summary": "# 诺尔-全传\n\n## 安德鲁·诺尔的学术背景：哈佛大学自然史教授\n\n安德鲁·H·诺尔（Andrew H. Knoll）是美国著名的古生物学家和地球科学家，现任哈佛大学费舍尔自然史教授。他于1951年出生，在俄亥俄州长大。诺尔在莱斯大学获得地质学学士学位，随后在哈佛大学获得博士学位，师从著名古生物学家埃尔索·巴洪。\n\n诺尔的学术生涯体现了跨学科的特点：\n- **早期研究**：专注于前寒武纪微体化石...",
+      "time": 2017
+    },
+    {
+      "nodeId": "地球简史",
+      "nodeLabel": "《地球简史》",
+      "nodeType": "book",
+      "articlePath": "knowledge/04-书籍导读/地球简史-深度解读.md",
+      "articleTitle": "《地球简史》 - 深度解析",
+      "summary": "# 《地球简史》深度解读\n\n## 书籍基本信息\n\n**书名**：《地球简史》（A Brief History of Earth: Four Billion Years in Eight Chapters）\n**作者**：安德鲁·诺尔（Andrew H. Knoll）\n**出版时间**：2017年（英文原版），2021年（中文译本）\n**出版社**：Harvard University Press（...",
+      "time": 2017
+    },
+    {
+      "nodeId": "第二章",
+      "nodeLabel": "第二章",
+      "nodeType": "episode",
+      "articlePath": "knowledge/06-纪录片支撑/03-第二章知识支撑.md",
+      "articleTitle": "第二章 - 深度解析",
+      "summary": "# 第二章知识支撑\n\n## 诺尔的邀请函是什么意思\n\n### 沃尔特·阿尔瓦雷兹的发现\n1980年，地质学家沃尔特·阿尔瓦雷兹和父亲路易斯·阿尔瓦雷兹（物理学家、诺贝尔奖得主）在意大利古比奥地区发现了一个惊人的现象：在白垩纪-古近纪（K-Pg）边界的地层中，铱元素含量异常高，是正常地壳含量的30倍。\n\n### \"邀请函\"的隐喻\n诺尔（可能指另一位地质学家或科学记者）的\"邀请函\"是一个诗意的比喻，意...",
+      "time": 2017
+    },
+    {
+      "nodeId": "未来地质学",
+      "nodeLabel": "未来地质学",
+      "nodeType": "concept",
+      "articlePath": "",
+      "articleTitle": "未来地质学（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": 2026
+    },
+    {
+      "nodeId": "翟明国",
+      "nodeLabel": "翟明国院士",
+      "nodeType": "person",
+      "articlePath": "knowledge/03-人物档案/翟明国-全传.md",
+      "articleTitle": "翟明国院士 - 深度解析",
+      "summary": "# 翟明国-全传\n\n## 翟明国院士的身份：中科院院士、前寒武纪地质学家\n\n### 学术地位与荣誉\n翟明国（1947-），中国著名地质学家，中国科学院院士，发展中国家科学院（TWAS）院士。他是中国前寒武纪地质学和变质地质学领域的领军人物，在国际地球科学界享有崇高声誉。\n\n### 教育背景\n- **本科**：毕业于北京大学地质地理系\n- **研究生**：在中国科学院地质研究所（现地质与地球物理研究...",
+      "time": 2026
+    },
+    {
+      "nodeId": "第三章",
+      "nodeLabel": "第三章",
+      "nodeType": "episode",
+      "articlePath": "knowledge/06-纪录片支撑/04-第三章知识支撑.md",
+      "articleTitle": "第三章 - 深度解析",
+      "summary": "# 第三章知识支撑：运动着的地球\n\n> 板块构造、地幔对流与未来地质学\n\n## 第三章叙事结构\n\n### 核心问题\n地球不是静止的，它在运动。这种运动如何塑造了我们今天看到的世界？又将把地球带向何方？\n\n### 叙事线索\n1. **从静态到动态**：传统观念中的\"稳定地球\" vs 现代科学中的\"活动地球\"\n2. **板块构造革命**：20世纪地质学最重要的理论突破\n3. **未来地质学**：院士提...",
+      "time": 2026
+    },
+    {
+      "nodeId": "序章",
+      "nodeLabel": "序章",
+      "nodeType": "episode",
+      "articlePath": "knowledge/06-纪录片支撑/01-序章知识支撑.md",
+      "articleTitle": "序章 - 深度解析",
+      "summary": "# 序章知识支撑\n\n## 脚本中院士提到的核心问题\n\n### 地球的年龄：46亿年的故事\n地球的年龄约46亿年，这个数字背后是地质学家一个多世纪的探索。19世纪，物理学家开尔文勋爵基于地球冷却模型计算出地球年龄仅为2000万-4000万年，这与地质学家从沉积岩厚度推断的数亿年存在巨大矛盾。直到20世纪初，放射性定年法的出现才解决了这一争议。铀-铅定年、钾-氩定年等技术让科学家能够精确测定岩石年龄，...",
+      "time": 2026
+    },
+    {
+      "nodeId": "结尾",
+      "nodeLabel": "结尾",
+      "nodeType": "episode",
+      "articlePath": "",
+      "articleTitle": "结尾（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": 2026
+    },
+    {
+      "nodeId": "AI动画-河流侵蚀",
+      "nodeLabel": "AI动画：河流侵蚀",
+      "nodeType": "media",
+      "articlePath": "",
+      "articleTitle": "AI动画：河流侵蚀（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": 2026
+    },
+    {
+      "nodeId": "AI动画-板块运动",
+      "nodeLabel": "AI动画：板块运动",
+      "nodeType": "media",
+      "articlePath": "",
+      "articleTitle": "AI动画：板块运动（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": 2026
+    },
+    {
+      "nodeId": "AI动画-撞击地球",
+      "nodeLabel": "AI动画：小行星撞击",
+      "nodeType": "media",
+      "articlePath": "",
+      "articleTitle": "AI动画：小行星撞击（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": 2026
+    },
+    {
+      "nodeId": "AI动画-地幔对流",
+      "nodeLabel": "AI动画：地幔对流",
+      "nodeType": "media",
+      "articlePath": "",
+      "articleTitle": "AI动画：地幔对流（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": 2026
+    },
+    {
+      "nodeId": "AI动画-24小时时钟",
+      "nodeLabel": "AI动画：46亿年时钟",
+      "nodeType": "media",
+      "articlePath": "",
+      "articleTitle": "AI动画：46亿年时钟（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": 2026
+    },
+    {
+      "nodeId": "资料画面-古比奥",
+      "nodeLabel": "资料：古比奥峡谷",
+      "nodeType": "media",
+      "articlePath": "",
+      "articleTitle": "资料：古比奥峡谷（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": 2026
+    },
+    {
+      "nodeId": "资料画面-陨石坑",
+      "nodeLabel": "资料：尤卡坦陨石坑",
+      "nodeType": "media",
+      "articlePath": "",
+      "articleTitle": "资料：尤卡坦陨石坑（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": 2026
+    },
+    {
+      "nodeId": "资料画面-达尔文",
+      "nodeLabel": "资料：达尔文/小猎犬号",
+      "nodeType": "media",
+      "articlePath": "",
+      "articleTitle": "资料：达尔文/小猎犬号（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": 2026
+    },
+    {
+      "nodeId": "院士采访",
+      "nodeLabel": "院士采访画面",
+      "nodeType": "media",
+      "articlePath": "",
+      "articleTitle": "院士采访画面（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": 2026
+    },
+    {
+      "nodeId": "院士野外",
+      "nodeLabel": "院士野外考察",
+      "nodeType": "media",
+      "articlePath": "",
+      "articleTitle": "院士野外考察（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": 2026
+    },
+    {
+      "nodeId": "院士研究",
+      "nodeLabel": "院士研究",
+      "nodeType": "concept",
+      "articlePath": "",
+      "articleTitle": "院士研究（暂无详细文章）",
+      "summary": "该节点的详细知识文章正在编写中...",
+      "time": 2026
+    }
+  ],
+  "mappedCount": 18,
+  "unmappedCount": 33
+}

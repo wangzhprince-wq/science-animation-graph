@@ -1,0 +1,53 @@
+0.15)';
+            document.getElementById('panelType').style.color = typeColors[d.type] || '#888';
+            document.getElementById('panelDesc').textContent = d.desc || '无描述';
+            
+            // 查找关联边
+            const visibleNodeIds = new Set(allNodes.filter(n => n.time <= sortedTimes[currentTimeIndex]).map(n => n.id));
+            const conns = allLinks.filter(e => {
+                const s = typeof e.source === 'object' ? e.source.id : e.source;
+                const t = typeof e.target === 'object' ? e.target.id : e.target;
+                return (s === d.id || t === d.id) && visibleNodeIds.has(s) && visibleNodeIds.has(t);
+            });
+            
+            document.getElementById('panelConn').textContent = conns.length > 0
+                ? '关联: ' + conns.map(c => {
+                    const other = c.source.id === d.id ? c.target : c.source;
+                    return other.label + '(' + (c.relation || '关联') + ')';
+                  }).join(' | ')
+                : '无关联';
+            
+            panel.classList.add('visible');
+            
+            // 更新阅读更多按钮
+            const article = articlesData.find(a => a.nodeId === d.id);
+            document.getElementById('readMoreBtn').textContent = article && article.articlePath 
+                ? '📖 阅读详细文章' 
+                : '📝 暂无详细文章';
+        }
+        
+        function closePanel() { 
+            document.getElementById('infoPanel').classList.remove('visible'); 
+        }
+        
+        function toggleLabels() { 
+            showLabels = !showLabels; 
+            labelElements.style('display', showLabels ? null : 'none'); 
+        }
+        
+        function resetView() { 
+            svg.transition().duration(600).call(d3.zoom().transform, d3.zoomIdentity); 
+        }
+        
+        // 窗口大小变化
+        window.addEventListener('resize', () => {
+            svg.attr('width', window.innerWidth).attr('height', window.innerHeight);
+            simulation.force('center', d3.forceCenter(window.innerWidth/2, window.innerHeight/2));
+            simulation.alpha(0.3).restart();
+        });
+        
+        // 启动系统
+        init();
+    </script>
+</body>
+</html>
