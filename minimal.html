@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>最小化测试</title>
+    <style>
+        body { margin: 0; padding: 20px; font-family: sans-serif; background: #0a0d14; color: white; }
+        #log { background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px; margin-top: 20px; }
+        .success { color: #4ecdc4; }
+        .error { color: #e74c3c; }
+    </style>
+</head>
+<body>
+    <h1>最小化测试页面</h1>
+    <div id="log"></div>
+    
+    <script>
+        const log = document.getElementById('log');
+        
+        function addLog(message, type = 'info') {
+            const p = document.createElement('p');
+            p.className = type;
+            p.textContent = message;
+            log.appendChild(p);
+            console.log(`[${type}] ${message}`);
+        }
+        
+        async function runTests() {
+            addLog('开始测试...');
+            
+            // 测试1: 基本JavaScript
+            addLog('✓ JavaScript工作正常', 'success');
+            
+            // 测试2: 加载graph.json
+            try {
+                const response = await fetch('graph.json');
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                
+                const data = await response.json();
+                addLog(`✓ 加载graph.json成功: ${data.nodes.length}节点, ${data.edges.length}边`, 'success');
+                
+                // 显示一些节点信息
+                const sampleNodes = data.nodes.slice(0, 3);
+                sampleNodes.forEach(node => {
+                    addLog(`  节点: ${node.label} (${node.type}, time: ${node.time || '无'})`, 'info');
+                });
+                
+            } catch (error) {
+                addLog(`✗ 加载graph.json失败: ${error.message}`, 'error');
+                return;
+            }
+            
+            // 测试3: 加载D3
+            try {
+                // 动态加载D3
+                await new Promise((resolve, reject) => {
+                    const script = document.createElement('script');
+                    script.src = 'https://cdn.bootcdn.net/ajax/libs/d3/7.8.5/d3.min.js';
+                    script.onload = resolve;
+                    script.onerror = () => reject(new Error('D3加载失败'));
+                    document.head.appendChild(script);
+                });
+                
+                addLog('✓ D3库加载成功', 'success');
+                
+                // 测试4: D3基本功能
+                const svg = d3.select('body')
+                    .append('svg')
+                    .attr('width', 200)
+                    .attr('height', 100)
+                    .style('margin-top', '20px')
+                    .style('border', '1px solid #4ecdc4');
+                
+                svg.append('circle')
+                    .attr('cx', 100)
+                    .attr('cy', 50)
+                    .attr('r', 20)
+                    .attr('fill', '#4ecdc4');
+                
+                svg.append('text')
+                    .attr('x', 100)
+                    .attr('y', 50)
+                    .attr('text-anchor', 'middle')
+                    .attr('dy', '0.3em')
+                    .attr('fill', 'white')
+                    .text('D3 ✓');
+                
+                addLog('✓ D3绘图成功', 'success');
+                
+            } catch (error) {
+                addLog(`✗ D3测试失败: ${error.message}`, 'error');
+            }
+            
+            addLog('测试完成！', 'success');
+        }
+        
+        // 运行测试
+        runTests().catch(error => {
+            addLog(`测试异常: ${error.message}`, 'error');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简化测试版</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; background: #0a0d14; color: #e8e8e8; }
+        #status { padding: 20px; }
+        .success { color: #4ecdc4; }
+        .error { color: #e74c3c; }
+    </style>
+</head>
+<body>
+    <div id="status">
+        <h1>简化测试版</h1>
+        <p id="message">正在加载...</p>
+        <div id="results"></div>
+    </div>
+
+    <script>
+        async function test() {
+            const results = document.getElementById('results');
+            const message = document.getElementById('message');
+            
+            try {
+                // 测试1: 是否能加载graph.json
+                message.textContent = '测试1: 加载graph.json...';
+                const resp = await fetch('graph.json');
+                if (!resp.ok) throw new Error(`HTTP ${resp.status}: ${resp.statusText}`);
+                
+                const data = await resp.json();
+                results.innerHTML += `<p class="success">✓ 成功加载graph.json: ${data.nodes.length}个节点, ${data.edges.length}条边</p>`;
+                
+                // 测试2: 检查是否有time字段
+                const nodesWithTime = data.nodes.filter(n => n.time !== undefined);
+                results.innerHTML += `<p class="success">✓ ${nodesWithTime.length}/${data.nodes.length}个节点有time字段</p>`;
+                
+                // 测试3: 检查事件节点
+                const eventNodes = data.nodes.filter(n => n.type === 'event');
+                results.innerHTML += `<p class="success">✓ ${eventNodes.length}个事件节点</p>`;
+                
+                // 测试4: 测试D3库
+                message.textContent = '测试4: 加载D3库...';
+                await new Promise((resolve) => {
+                    const script = document.createElement('script');
+                    script.src = 'https://cdn.bootcdn.net/ajax/libs/d3/7.8.5/d3.min.js';
+                    script.onload = resolve;
+                    script.onerror = () => { throw new Error('D3库加载失败'); };
+                    document.head.appendChild(script);
+                });
+                results.innerHTML += `<p class="success">✓ D3库加载成功</p>`;
+                
+                // 测试5: 创建简单SVG
+                message.textContent = '测试5: 创建SVG...';
+                const svg = d3.select('body').append('svg')
+                    .attr('width', 400)
+                    .attr('height', 300)
+                    .style('border', '1px solid #4ecdc4')
+                    .style('margin', '20px');
+                
+                svg.append('circle')
+                    .attr('cx', 100)
+                    .attr('cy', 100)
+                    .attr('r', 30)
+                    .attr('fill', '#4ecdc4');
+                
+                svg.append('text')
+                    .attr('x', 100)
+                    .attr('y', 150)
+                    .attr('text-anchor', 'middle')
+                    .attr('fill', '#fff')
+                    .text('D3工作正常');
+                
+                results.innerHTML += `<p class="success">✓ SVG创建成功</p>`;
+                message.textContent = '所有测试通过！';
+                message.className = 'success';
+                
+            } catch (error) {
+                message.textContent = `测试失败: ${error.message}`;
+                message.className = 'error';
+                results.innerHTML += `<p class="error">✗ ${error.message}</p>`;
+                console.error('测试错误:', error);
+            }
+        }
+        
+        test();
+    </script>
+</body>
+</html>

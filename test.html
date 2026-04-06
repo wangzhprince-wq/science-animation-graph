@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试页面</title>
+</head>
+<body>
+    <h1>测试页面</h1>
+    <p>检查以下链接是否正常：</p>
+    <ul>
+        <li><a href="index.html" target="_blank">index.html</a> - 主页面</li>
+        <li><a href="graph.json" target="_blank">graph.json</a> - 数据文件</li>
+        <li><a href="index-with-kb.html" target="_blank">index-with-kb.html</a> - 知识库版本</li>
+    </ul>
+    
+    <h2>检查控制台错误：</h2>
+    <p>按F12打开开发者工具，查看Console标签页是否有错误信息。</p>
+    
+    <h2>常见问题：</h2>
+    <ol>
+        <li>网络问题：检查是否能访问GitHub</li>
+        <li>缓存问题：按Ctrl+F5强制刷新</li>
+        <li>JavaScript错误：查看控制台</li>
+        <li>跨域问题：检查是否在本地服务器运行</li>
+    </ol>
+    
+    <script>
+        console.log("测试页面加载完成");
+        
+        // 测试fetch是否能工作
+        fetch('graph.json')
+            .then(response => {
+                console.log('graph.json状态:', response.status);
+                return response.json();
+            })
+            .then(data => {
+                console.log('graph.json节点数量:', data.nodes.length);
+                console.log('graph.json边数量:', data.edges.length);
+            })
+            .catch(error => {
+                console.error('获取graph.json失败:', error);
+            });
+    </script>
+</body>
+</html>
