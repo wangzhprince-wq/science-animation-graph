@@ -1,4 +1,4 @@
-0L0,4')
+M0,-4L8,0L0,4')
                 .attr('fill', 'rgba(255,255,255,0.15)');
             
             g = svg.append('g');
@@ -184,14 +184,14 @@
             });
         }
         
-        // 5. 信息面板 - 修改为支持知识阅读舱
+        // 5. 信息面板
         function showInfo(d) {
             const panel = document.getElementById('infoPanel');
             document.getElementById('panelTitle').textContent = d.label;
             document.getElementById('panelType').textContent = d.type;
             document.getElementById('panelType').style.background = typeBgColors[d.type] || 'rgba(136,136,136,0.15)';
             document.getElementById('panelType').style.color = typeColors[d.type] || '#888';
-            document.getElementById('panelDesc').textContent = d.desc || '暂无简述';
+            document.getElementById('panelDesc').textContent = d.desc || '暂无描述';
             
             // 清理之前的关联和按钮
             const connDiv = document.getElementById('panelConn');
