@@ -1,128 +1,86 @@
 {
   "nodes": [
     {
-      "id": "event_earth_form",
+      "id": "earth",
       "label": "地球形成",
       "type": "event",
       "time": -4600000000,
-      "desc": "太阳系诞生，地球作为一个炽热的岩石球体形成。"
+      "desc": "太阳系诞生，地球作为一个炽热的岩石球体形成。",
+      "content": "<h2>深时之始：地球的诞生</h2><p>46亿年前，在太阳星云的残骸中，无数的尘埃和岩石通过引力不断碰撞、吸积，最终形成了我们的地球。早期的地球被称为<b>冥古宙 (Hadean)</b>，表面如同炼狱，布满了岩浆海，不断遭受小行星的轰击。</p><p>此时的地球不仅没有生命，连稳定的大气和海洋都不存在。这漫长的岁月，构成了我们\"深时\"叙事的第一块基石。</p>"
     },
     {
-      "id": "event_extinction_dino",
-      "label": "K-Pg灭绝",
+      "id": "kt_extinction",
+      "label": "恐龙灭绝",
       "type": "event",
       "time": -66000000,
-      "desc": "小行星撞击，非鸟恐龙灭绝，地层中留下了铱异常层。"
+      "desc": "K-T界线事件，一颗小行星撞击地球，终结了中生代。",
+      "content": "<h2>末日降临：K-T大灭绝</h2><p>6600万年前，一颗直径约10公里的小行星以极高的速度撞击了今天墨西哥的尤卡坦半岛。这次撞击释放的能量相当于数十亿颗广岛原子弹。</p><p>撞击导致了全球性的野火、海啸，以及随之而来的\"核冬天\"。包括非鸟恐龙在内，地球上75%的物种在极短的时间内灰飞烟灭。这在地层中留下了一层富含<b>铱 (Iridium)</b> 的地质标记线。</p>"
     },
     {
-      "id": "concept_deep_time",
-      "label": "深时 (Deep Time)",
+      "id": "steno",
+      "label": "尼古拉斯·斯坦诺",
+      "type": "person",
+      "time": 1669,
+      "desc": "解剖学家，首次提出地层学基本定律。",
+      "content": "<h2>化石的解密者</h2><p>在17世纪，人们认为山顶的贝壳化石是\"星星的凝结\"或\"诺亚方舟的遗迹\"。解剖学家斯坦诺在解剖大白鲨时，发现鲨鱼牙齿与一种名为\"舌石\"的化石完全一致。</p><p>他大胆提出：这些化石曾经是活生生的生物，被泥沙掩埋后变成了石头。更重要的是，他提出了<b>叠覆律 (Law of Superposition)</b>：底部的岩层比顶部的岩层更古老。这是人类首次找到读取\"地球日记\"的方法。</p>"
+    },
+    {
+      "id": "stratigraphy",
+      "label": "叠覆律",
       "type": "concept",
-      "time": 1788,
-      "desc": "地球的历史远比《圣经》记载的几千年要长得多，是数以亿计的岁月。"
+      "time": 1669,
+      "desc": "地质学的基本定律：下层岩石比上层古老。",
+      "content": ""
     },
     {
-      "id": "person_hutton",
+      "id": "hutton",
       "label": "詹姆斯·赫顿",
       "type": "person",
       "time": 1788,
-      "desc": "地质学之父，他在苏格兰的断层中看到了'深时'的证据。"
+      "desc": "地质学之父，在苏格兰海岸发现了\"深时\"的证据。",
+      "content": "<h2>时间的深渊：詹姆斯·赫顿</h2><p>1788年，苏格兰农场主兼学者詹姆斯·赫顿站在西卡角 (Siccar Point) 的海岸上。他看着脚下垂直交错的岩层，陷入了沉思。</p><p>他意识到，要把水平的岩层推挤成垂直状态，再被侵蚀，再盖上新的岩层，这需要难以想象的漫长岁月。他写下了那句著名的论断：<b>\"我们看不到开始的痕迹，也看不到结束的前景。\"</b> 这一刻，人类发现了\"深时 (Deep Time)\"。</p>"
     },
     {
-      "id": "person_lyell",
+      "id": "deep_time",
+      "label": "深时理论",
+      "type": "concept",
+      "time": 1788,
+      "desc": "地球的历史极为漫长，按百万年乃至亿年计算。",
+      "content": ""
+    },
+    {
+      "id": "lyell",
       "label": "查尔斯·莱伊尔",
       "type": "person",
       "time": 1830,
-      "desc": "提出'均变论'，深刻影响了达尔文的进化论。"
+      "desc": "写出《地质学原理》，提出\"均变论\"。",
+      "content": "<h2>现在是认识过去的钥匙</h2><p>1830年，查尔斯·莱伊尔出版了《地质学原理》。他反对用\"大洪水\"这种突发性灾难来解释地质现象。他主张<b>均变论 (Uniformitarianism)</b>：今天我们能看到的风化、侵蚀、火山等地质作用，在过去也以同样的速度运作。</p><p>因为这些力量非常缓慢，所以雕刻出阿尔卑斯山脉或是科罗拉多大峡谷，必然需要几亿年的时间。他的这本书，成为了另一位伟大科学家的随身\"圣经\"。</p>"
     },
     {
-      "id": "person_darwin",
-      "label": "查尔斯·达尔文",
-      "type": "person",
-      "time": 1859,
-      "desc": "《物种起源》作者，进化论奠基人，深受莱伊尔影响。"
-    },
-    {
-      "id": "concept_uniformitarianism",
+      "id": "uniformitarianism",
       "label": "均变论",
       "type": "concept",
       "time": 1830,
-      "desc": "现在是过去的钥匙，地质过程在过去和现在以相同速率发生。"
+      "desc": "主张过去的地质作用与现在相同，极其缓慢。",
+      "content": ""
     },
     {
-      "id": "concept_evolution",
-      "label": "进化论",
-      "type": "concept",
+      "id": "darwin",
+      "label": "查尔斯·达尔文",
+      "type": "person",
       "time": 1859,
-      "desc": "物种通过自然选择随时间逐渐变化的理论。"
-    },
-    {
-      "id": "event_asteroid_impact",
-      "label": "小行星撞击",
-      "type": "event",
-      "time": -66000000,
-      "desc": "尤卡坦半岛陨石坑形成，全球气候变化导致生物大灭绝。"
-    },
-    {
-      "id": "concept_iridium_layer",
-      "label": "铱异常层",
-      "type": "concept",
-      "time": 1980,
-      "desc": "全球地层中发现的铱元素富集层，是小行星撞击的直接证据。"
-    },
-    {
-      "id": "person_alvarez",
-      "label": "阿尔瓦雷斯父子",
-      "type": "person",
-      "time": 1980,
-      "desc": "提出小行星撞击导致恐龙灭绝的理论。"
-    },
-    {
-      "id": "event_cambrian_explosion",
-      "label": "寒武纪大爆发",
-      "type": "event",
-      "time": -540000000,
-      "desc": "生命多样性突然增加，几乎所有现代动物门类出现。"
-    },
-    {
-      "id": "concept_fossil_record",
-      "label": "化石记录",
-      "type": "concept",
-      "time": 1800,
-      "desc": "保存在岩石中的古代生物遗骸，是地球历史的直接证据。"
-    },
-    {
-      "id": "person_zhai",
-      "label": "翟明国",
-      "type": "person",
-      "time": 2026,
-      "desc": "中国地质学家，提出'未来地质学'概念，关注人类世的地质影响。"
-    },
-    {
-      "id": "concept_anthropocene",
-      "label": "人类世",
-      "type": "concept",
-      "time": 2000,
-      "desc": "人类活动成为影响地球系统的主要地质力量的新地质时代。"
+      "desc": "《物种起源》作者，借助地质学时间完成了进化论。",
+      "content": "<h2>时间给予生命的奇迹</h2><p>1831年，年轻的达尔文登上小猎犬号，随身带的正是莱伊尔的《地质学原理》。在南美洲，他亲眼看到了地震如何将海岸抬升。</p><p>莱伊尔赋予了地球无尽的\"深时\"，这正好为达尔文的<b>自然选择学说</b>提供了最稀缺的资源——时间。如果没有地质学家证实的亿万年岁月，生物极其缓慢的演化就根本无法成立。在这里，地质学与生物学完成了伟大的会师。</p>"
     }
   ],
   "edges": [
-    {"source": "person_hutton", "target": "concept_deep_time", "relation": "提出"},
-    {"source": "person_lyell", "target": "concept_deep_time", "relation": "推广"},
-    {"source": "person_lyell", "target": "concept_uniformitarianism", "relation": "系统化"},
-    {"source": "person_darwin", "target": "concept_evolution", "relation": "创立"},
-    {"source": "person_lyell", "target": "person_darwin", "relation": "影响"},
-    {"source": "concept_deep_time", "target": "event_earth_form", "relation": "解释了"},
-    {"source": "concept_deep_time", "target": "event_extinction_dino", "relation": "包容了"},
-    {"source": "concept_deep_time", "target": "event_cambrian_explosion", "relation": "容纳了"},
-    {"source": "event_asteroid_impact", "target": "event_extinction_dino", "relation": "导致"},
-    {"source": "person_alvarez", "target": "event_asteroid_impact", "relation": "证明"},
-    {"source": "person_alvarez", "target": "concept_iridium_layer", "relation": "发现"},
-    {"source": "concept_fossil_record", "target": "concept_evolution", "relation": "支持"},
-    {"source": "concept_fossil_record", "target": "event_extinction_dino", "relation": "记录"},
-    {"source": "concept_fossil_record", "target": "event_cambrian_explosion", "relation": "见证"},
-    {"source": "person_zhai", "target": "concept_anthropocene", "relation": "研究"},
-    {"source": "concept_anthropocene", "target": "event_earth_form", "relation": "延续"},
-    {"source": "concept_uniformitarianism", "target": "concept_deep_time", "relation": "支撑"}
+    {"source": "steno", "target": "stratigraphy"},
+    {"source": "stratigraphy", "target": "kt_extinction"},
+    {"source": "hutton", "target": "deep_time"},
+    {"source": "deep_time", "target": "earth"},
+    {"source": "lyell", "target": "uniformitarianism"},
+    {"source": "uniformitarianism", "target": "deep_time"},
+    {"source": "darwin", "target": "lyell"},
+    {"source": "darwin", "target": "deep_time"}
   ]
 }

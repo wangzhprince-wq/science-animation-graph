@@ -1,4 +1,88 @@
-.alphaTarget(0.3).restart(); 
+0L0,4')
+                .attr('fill', 'rgba(255,255,255,0.15)');
+            
+            g = svg.append('g');
+            
+            // 缩放
+            const zoom = d3.zoom()
+                .scaleExtent([0.15, 4])
+                .on('zoom', (event) => {
+                    g.attr('transform', event.transform);
+                });
+            
+            svg.call(zoom);
+            
+            // 力导向模拟
+            simulation = d3.forceSimulation()
+                .force('link', d3.forceLink().id(d => d.id).distance(100).strength(0.4))
+                .force('charge', d3.forceManyBody().strength(-280))
+                .force('center', d3.forceCenter(width / 2, height / 2))
+                .force('collision', d3.forceCollide().radius(35));
+            
+            // 初始化选择集
+            linkElements = g.append('g').selectAll('line');
+            nodeElements = g.append('g').selectAll('circle');
+            labelElements = g.append('g').selectAll('text');
+        }
+        
+        // 3. 更新图谱
+        function updateGraph(timeIndex) {
+            currentTimeIndex = timeIndex;
+            const currentTime = sortedTimes[timeIndex];
+            
+            // 更新时间显示
+            updateTimeDisplay(currentTime);
+            
+            // 过滤可见节点
+            const visibleNodes = allNodes.filter(node => node.time <= currentTime);
+            const visibleNodeIds = new Set(visibleNodes.map(node => node.id));
+            
+            // 过滤可见边
+            const visibleLinks = allLinks.filter(link => {
+                const sourceId = typeof link.source === 'object' ? link.source.id : link.source;
+                const targetId = typeof link.target === 'object' ? link.target.id : link.target;
+                return visibleNodeIds.has(sourceId) && visibleNodeIds.has(targetId);
+            });
+            
+            console.log(`时间 ${currentTime}: ${visibleNodes.length}节点, ${visibleLinks.length}边`);
+            
+            // 更新连线
+            linkElements = g.selectAll('line')
+                .data(visibleLinks, d => {
+                    const sid = typeof d.source === 'object' ? d.source.id : d.source;
+                    const tid = typeof d.target === 'object' ? d.target.id : d.target;
+                    return `${sid}-${tid}`;
+                });
+            
+            linkElements.join(
+                enter => enter.append('line')
+                    .attr('stroke', 'rgba(255,255,255,0.12)')
+                    .attr('stroke-width', 1.5)
+                    .attr('marker-end', 'url(#arrow)')
+                    .attr('opacity', 0)
+                    .call(enter => enter.transition().duration(800).attr('opacity', 1)),
+                update => update,
+                exit => exit.remove()
+            );
+            
+            // 更新节点 - 关键：添加 .attr('class', 'node') 实现发光特效
+            nodeElements = g.selectAll('circle')
+                .data(visibleNodes, d => d.id);
+            
+            nodeElements.join(
+                enter => {
+                    const circle = enter.append('circle')
+                        .attr('class', 'node')  // 关键：添加node类实现发光特效
+                        .attr('r', d => d.type === 'event' ? 14 : 10)
+                        .attr('fill', d => typeColors[d.type] || '#888')
+                        .attr('stroke', d => typeColors[d.type] || '#888')
+                        .attr('stroke-width', 2)
+                        .attr('opacity', 0)
+                        .attr('cursor', 'pointer')
+                        .on('click', (e, d) => showInfo(d))
+                        .call(d3.drag()
+                            .on('start', (e,d) => { 
+                                e.active && simulation.alphaTarget(0.3).restart(); 
                                 d.fx = d.x; d.fy = d.y; 
                             })
                             .on('drag', (e,d) => { 
@@ -100,35 +184,49 @@
             });
         }
         
-        // 5. 信息面板
+        // 5. 信息面板 - 修改为支持知识阅读舱
         function showInfo(d) {
             const panel = document.getElementById('infoPanel');
             document.getElementById('panelTitle').textContent = d.label;
             document.getElementById('panelType').textContent = d.type;
             document.getElementById('panelType').style.background = typeBgColors[d.type] || 'rgba(136,136,136,0.15)';
             document.getElementById('panelType').style.color = typeColors[d.type] || '#888';
-            document.getElementById('panelDesc').textContent = d.desc || '暂无描述';
+            document.getElementById('panelDesc').textContent = d.desc || '暂无简述';
             
-            // 查找关联边
-            const visibleNodeIds = new Set(allNodes.filter(n => n.time <= sortedTimes[currentTimeIndex]).map(n => n.id));
-            const conns = allLinks.filter(e => {
-                const s = typeof e.source === 'object' ? e.source.id : e.source;
-                const t = typeof e.target === 'object' ? e.target.id : e.target;
-                return (s === d.id || t === d.id) && visibleNodeIds.has(s) && visibleNodeIds.has(t);
-            });
-            
-            document.getElementById('panelConn').textContent = conns.length > 0
-                ? '关联: ' + conns.map(c => {
-                    const other = c.source.id === d.id ? c.target : c.source;
-                    return other.label + '(' + (c.relation || '关联') + ')';
-                  }).join(' | ')
-                : '无关联';
-            
+            // 清理之前的关联和按钮
+            const connDiv = document.getElementById('panelConn');
+            connDiv.innerHTML = ''; 
+
+            // 如果该节点在 JSON 中有 content 字段，就显示"阅读深度文章"按钮！
+            if (d.content && d.content.trim() !== '') {
+                const btn = document.createElement('button');
+                btn.className = 'read-more-btn';
+                btn.innerHTML = '📖 阅读深度文章';
+                btn.onclick = () => openArticle(d); // 点击打开大知识库
+                connDiv.appendChild(btn);
+            }
+
             panel.classList.add('visible');
         }
         
         function closePanel() { 
             document.getElementById('infoPanel').classList.remove('visible'); 
+        }
+        
+        // ========== 新增的知识库控制逻辑 ==========
+        function openArticle(node) {
+            const reader = document.getElementById('article-reader');
+            document.getElementById('article-type').textContent = "Knowledge Base / " + node.type;
+            document.getElementById('article-title').textContent = node.label;
+            
+            // 把 JSON 里的 HTML 内容直接塞进去
+            document.getElementById('article-content').innerHTML = node.content;
+            
+            reader.classList.add('active');
+        }
+        
+        function closeArticle() {
+            document.getElementById('article-reader').classList.remove('active');
         }
         
         function toggleLabels() { 
