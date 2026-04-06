@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>超简单测试</title>
+    <style>
+        body { background: #000; color: #0f0; font-family: monospace; padding: 20px; }
+        h1 { color: #fff; }
+        .success { color: #0f0; }
+        .error { color: #f00; }
+    </style>
+</head>
+<body>
+    <h1>超简单测试页面</h1>
+    <div id="status">测试中...</div>
+    
+    <script>
+        const status = document.getElementById('status');
+        
+        // 测试1: JavaScript是否工作
+        status.innerHTML = '<span class="success">✓ JavaScript正常工作</span>';
+        
+        // 测试2: 创建简单图形
+        const canvas = document.createElement('canvas');
+        canvas.width = 300;
+        canvas.height = 200;
+        document.body.appendChild(canvas);
+        
+        const ctx = canvas.getContext('2d');
+        if (ctx) {
+            // 画一个地球
+            ctx.beginPath();
+            ctx.arc(150, 100, 50, 0, Math.PI * 2);
+            ctx.fillStyle = '#3498db';
+            ctx.fill();
+            ctx.strokeStyle = '#2980b9';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+            
+            // 画一个月球
+            ctx.beginPath();
+            ctx.arc(250, 100, 15, 0, Math.PI * 2);
+            ctx.fillStyle = '#bdc3c7';
+            ctx.fill();
+            
+            status.innerHTML += '<br><span class="success">✓ Canvas图形创建成功</span>';
+        } else {
+            status.innerHTML += '<br><span class="error">✗ Canvas不支持</span>';
+        }
+        
+        // 测试3: 显示当前时间
+        const now = new Date();
+        status.innerHTML += `<br>当前时间: ${now.toLocaleString()}`;
+        
+        // 测试4: 显示页面信息
+        status.innerHTML += `<br>页面标题: ${document.title}`;
+        status.innerHTML += `<br>页面URL: ${window.location.href}`;
+        
+        status.innerHTML += '<br><br><span class="success">✅ 所有测试通过！页面正常工作</span>';
+    </script>
+</body>
+</html>
