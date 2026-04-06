@@ -1,0 +1,400 @@
+Data.edges.filter(e => {
+            const src = typeof e.source === 'object' ? e.source.id : e.source;
+            const tgt = typeof e.target === 'object' ? e.target.id : e.target;
+            return nodeIds.has(src) && nodeIds.has(tgt);
+        });
+        graphData.edges = validEdges;
+        
+        // 保存所有数据
+        allNodes = graphData.nodes;
+        allLinks = graphData.edges;
+        
+        // 提取时间点
+        const times = allNodes.map(n => n.time || -1000000000);
+        sortedTimes = [...new Set(times)].sort((a, b) => a - b);
+        
+        console.log(`时间轴：${sortedTimes.length} 个时间点`);
+        
+        // 设置时间滑块
+        const timeSlider = document.getElementById('time-slider');
+        timeSlider.max = sortedTimes.length - 1;
+        timeSlider.value = 0;
+        
+        updateTimeDisplay(0);
+        
+        // 初始化图谱
+        initGraph();
+        updateGraph(0);
+        setupPlayControls();
+        
+    } catch(e) {
+        document.body.innerHTML = '<p style="color:#e74c3c;padding:40px">加载失败: ' + e.message + '</p>';
+    }
+}
+
+function initGraph() {
+    const w = document.getElementById('graphContainer').offsetWidth;
+    const h = document.getElementById('graphContainer').offsetHeight;
+    
+    svg = d3.select('#graph').attr('width', w).attr('height', h);
+
+    // 创建箭头标记
+    const defs = svg.append('defs');
+    defs.append('marker').attr('id','arrow').attr('viewBox','0 -4 8 8')
+        .attr('refX',18).attr('refY',0).attr('markerWidth',6).attr('markerHeight',6)
+        .attr('orient','auto').append('path')
+        .attr('d','M0,-4L8,0L0,4').attr('fill','rgba(255,255,255,0.15)');
+
+    g = svg.append('g');
+
+    // 缩放功能
+    const zoom = d3.zoom().scaleExtent([0.15, 4]).on('zoom', e => g.attr('transform', e.transform));
+    svg.call(zoom);
+    
+    // 初始化力导向模拟
+    simulation = d3.forceSimulation([])
+        .force('link', d3.forceLink([]).id(d => d.id).distance(100).strength(0.4))
+        .force('charge', d3.forceManyBody().strength(-280))
+        .force('center', d3.forceCenter(w/2, h/2))
+        .force('collision', d3.forceCollide().radius(d => typeColors[d.type] ? 35 : 25));
+}
+
+function updateGraph(timeIndex) {
+    currentTimeIndex = timeIndex;
+    const currentTime = sortedTimes[timeIndex];
+    
+    // 过滤可见节点
+    const visibleNodes = allNodes.filter(n => (n.time || -1000000000) <= currentTime);
+    const visibleNodeIds = new Set(visibleNodes.map(n => n.id));
+    
+    // 过滤可见边
+    const visibleLinks = allLinks.filter(l => {
+        const src = typeof l.source === 'object' ? l.source.id : l.source;
+        const tgt = typeof l.target === 'object' ? l.target.id : l.target;
+        return visibleNodeIds.has(src) && visibleNodeIds.has(tgt);
+    });
+    
+    // 更新连线
+    linkElements = g.selectAll('line.link')
+        .data(visibleLinks, d => `${d.source.id || d.source}-${d.target.id || d.target}`);
+    
+    linkElements.join(
+        enter => enter.append('line')
+            .attr('class', 'link')
+            .attr('stroke', 'rgba(255,255,255,0.12)')
+            .attr('stroke-width', 1.5)
+            .attr('marker-end', 'url(#arrow)')
+            .attr('opacity', 0)
+            .transition().duration(500)
+            .attr('opacity', 1),
+        update => update,
+        exit => exit.transition().duration(300)
+            .attr('opacity', 0)
+            .remove()
+    );
+    
+    // 更新节点
+    nodeElements = g.selectAll('circle.node')
+        .data(visibleNodes, d => d.id);
+    
+    nodeElements.join(
+        enter => {
+            const newNodes = enter.append('circle')
+                .attr('class', 'node')
+                .attr('r', d => d.type === 'episode' ? 14 : d.type === 'person' ? 12 : 10)
+                .attr('fill', d => typeColors[d.type] || '#888')
+                .attr('stroke', d => typeColors[d.type] || '#888')
+                .attr('stroke-width', 2)
+                .attr('stroke-opacity', 0.7)
+                .attr('opacity', 0)
+                .attr('cursor', 'pointer')
+                .call(d3.drag()
+                    .on('start', (e,d) => { 
+                        e.active && simulation.alphaTarget(0.3).restart(); 
+                        d.fx = d.x; d.fy = d.y; 
+                    })
+                    .on('drag', (e,d) => { 
+                        d.fx = e.x; d.fy = e.y; 
+                    })
+                    .on('end', (e,d) => { 
+                        e.active && simulation.alphaTarget(0); 
+                        d.fx = null; d.fy = null; 
+                    }))
+                .on('click', (e, d) => showInfo(d))
+                .on('mouseover', (e, d) => highlight(d))
+                .on('mouseout', () => resetHighlight());
+            
+            newNodes.transition().duration(800)
+                .attr('opacity', d => d.type === 'episode' ? 0.6 : 0.85);
+            
+            // 事件节点高亮
+            newNodes.filter(d => d.type === 'event')
+                .classed('event-highlight', true)
+                .transition().duration(1500)
+                .on('end', function() {
+                    d3.select(this).classed('event-highlight', false);
+                });
+            
+            return newNodes;
+        },
+        update => update,
+        exit => exit.transition().duration(300)
+            .attr('opacity', 0)
+            .remove()
+    );
+    
+    // 更新标签
+    labelElements = g.selectAll('text.label')
+        .data(visibleNodes, d => d.id);
+    
+    labelElements.join(
+        enter => enter.append('text')
+            .attr('class', 'label')
+            .text(d => d.label)
+            .attr('font-size', d => d.type === 'episode' ? 11 : 10)
+            .attr('fill', 'rgba(255,255,255,0.7)')
+            .attr('text-anchor', 'middle')
+            .attr('dy', d => d.type === 'episode' ? 26 : 20)
+            .attr('pointer-events', 'none')
+            .style('display', showLabels ? null : 'none')
+            .attr('opacity', 0)
+            .transition().duration(800)
+            .attr('opacity', 1),
+        update => update.style('display', showLabels ? null : 'none'),
+        exit => exit.transition().duration(300)
+            .attr('opacity', 0)
+            .remove()
+    );
+    
+    // 更新力导向模拟
+    simulation.nodes(visibleNodes);
+    simulation.force('link').links(visibleLinks);
+    simulation.alpha(0.3).restart();
+    
+    // 更新时间显示
+    updateTimeDisplay(timeIndex);
+    document.getElementById('time-slider').value = timeIndex;
+}
+
+function updateTimeDisplay(timeIndex) {
+    const currentTime = sortedTimes[timeIndex];
+    const totalTimes = sortedTimes.length;
+    
+    let timeStr;
+    if (currentTime < 0) {
+        const absTime = Math.abs(currentTime);
+        if (absTime >= 1000000) {
+            timeStr = `${(absTime/1000000).toFixed(1)}亿年前`;
+        } else if (absTime >= 1000) {
+            timeStr = `${(absTime/1000).toFixed(0)}千年前`;
+        } else {
+            timeStr = `${absTime}年前`;
+        }
+    } else {
+        timeStr = `${currentTime}年`;
+    }
+    
+    document.getElementById('time-display').innerHTML = `
+        <span class="current">${timeStr}</span> / <span class="total">${totalTimes}个时间点</span>
+        <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-top:2px;">${timeIndex+1}/${totalTimes}</div>
+    `;
+}
+
+function setupPlayControls() {
+    const playBtn = document.getElementById('play-btn');
+    const timeSlider = document.getElementById('time-slider');
+    
+    playBtn.addEventListener('click', () => {
+        if (isPlaying) {
+            stopPlayback();
+        } else {
+            startPlayback();
+        }
+    });
+    
+    timeSlider.addEventListener('input', (e) => {
+        const newIndex = parseInt(e.target.value);
+        if (!isPlaying) {
+            updateGraph(newIndex);
+        }
+    });
+    
+    timeSlider.addEventListener('change', (e) => {
+        const newIndex = parseInt(e.target.value);
+        updateGraph(newIndex);
+    });
+}
+
+function startPlayback() {
+    if (isPlaying) return;
+    
+    isPlaying = true;
+    const playBtn = document.getElementById('play-btn');
+    playBtn.textContent = '⏸';
+    playBtn.classList.add('playing');
+    
+    const totalSteps = sortedTimes.length - 1;
+    let currentStep = currentTimeIndex;
+    
+    playInterval = setInterval(() => {
+        currentStep++;
+        
+        if (currentStep >= totalSteps) {
+            stopPlayback();
+            currentStep = totalSteps;
+        }
+        
+        updateGraph(currentStep);
+        document.getElementById('time-slider').value = currentStep;
+        
+    }, 800);
+}
+
+function stopPlayback() {
+    if (!isPlaying) return;
+    
+    isPlaying = false;
+    clearInterval(playInterval);
+    
+    const playBtn = document.getElementById('play-btn');
+    playBtn.textContent = '▶';
+    playBtn.classList.remove('playing');
+}
+
+// ========== 原有功能 ==========
+function showInfo(d) {
+    currentSelectedNode = d;
+    
+    const panel = document.getElementById('infoPanel');
+    document.getElementById('panelTitle').textContent = d.label;
+    document.getElementById('panelType').textContent = d.type;
+    document.getElementById('panelType').style.background = typeBgColors[d.type] || 'rgba(136,136,136,0.15)';
+    document.getElementById('panelType').style.color = typeColors[d.type] || '#888';
+    document.getElementById('panelDesc').textContent = d.desc || '无描述';
+    
+    // 查找关联边
+    const visibleNodeIds = new Set(allNodes.filter(n => (n.time || -1000000000) <= sortedTimes[currentTimeIndex]).map(n => n.id));
+    const conns = allLinks.filter(e => {
+        const s = typeof e.source === 'object' ? e.source.id : e.source;
+        const t = typeof e.target === 'object' ? e.target.id : e.target;
+        return (s === d.id || t === d.id) && visibleNodeIds.has(s) && visibleNodeIds.has(t);
+    });
+    
+    document.getElementById('panelConn').textContent = conns.length > 0
+        ? '关联: ' + conns.map(c => {
+            const other = c.source.id === d.id ? c.target : c.source;
+            return other.label + '(' + (c.relation || '关联') + ')';
+          }).join(' | ')
+        : '无关联';
+    
+    // 更新知识库链接按钮
+    const kbLink = document.getElementById('kbLink');
+    if (ARTICLE_MAPPING[d.id]) {
+        kbLink.style.display = 'inline-block';
+        kbLink.textContent = '查看知识库文章';
+    } else {
+        kbLink.style.display = 'none';
+    }
+    
+    panel.classList.add('visible');
+}
+
+function closePanel() { 
+    document.getElementById('infoPanel').classList.remove('visible'); 
+}
+
+function highlight(d) {
+    const visibleNodeIds = new Set(allNodes.filter(n => (n.time || -1000000000) <= sortedTimes[currentTimeIndex]).map(n => n.id));
+    const connected = new Set([d.id]);
+    
+    allLinks.forEach(e => {
+        const s = typeof e.source === 'object' ? e.source.id : e.source;
+        const t = typeof e.target === 'object' ? e.target.id : e.target;
+        if (s === d.id && visibleNodeIds.has(t)) connected.add(t);
+        if (t === d.id && visibleNodeIds.has(s)) connected.add(s);
+    });
+    
+    nodeElements.attr('opacity', n => connected.has(n.id) ? 1 : 0.2);
+    linkElements.attr('opacity', l => {
+        const s = typeof l.source === 'object' ? l.source.id : l.source;
+        const t = typeof l.target === 'object' ? l.target.id : l.target;
+        return s === d.id || t === d.id ? 1 : 0.05;
+    });
+    labelElements.style('opacity', l => connected.has(l.id) ? 1 : 0.1);
+}
+
+function resetHighlight() {
+    nodeElements.attr('opacity', d => currentFilter && d.type !== currentFilter ? 0.15 : d.type === 'episode' ? 0.6 : 0.85);
+    linkElements.attr('opacity', 1);
+    labelElements.style('opacity', showLabels ? null : 'none');
+}
+
+function toggleLabels() {
+    showLabels = !showLabels;
+    labelElements.style('display', showLabels ? null : 'none');
+}
+
+function resetView() {
+    svg.transition().duration(600).call(d3.zoom().transform, d3.zoomIdentity);
+}
+
+function filterType(type) {
+    currentFilter = type;
+    nodeElements.attr('opacity', d => type && d.type !== type ? 0.15 : d.type === 'episode' ? 0.6 : 0.85);
+    labelElements.style('opacity', d => {
+        if (type && d.type !== type) return 0.1;
+        return showLabels ? 1 : 0;
+    });
+}
+
+function searchNodes(q) {
+    const noMatch = document.getElementById('noMatch');
+    if (!q) { 
+        noMatch.style.display = 'none'; 
+        resetHighlight(); 
+        return; 
+    }
+    
+    const qlower = q.toLowerCase();
+    const matched = new Set();
+    const visibleNodes = allNodes.filter(n => (n.time || -1000000000) <= sortedTimes[currentTimeIndex]);
+    
+    visibleNodes.forEach(n => {
+        if (n.label.toLowerCase().includes(qlower) || (n.desc && n.desc.toLowerCase().includes(qlower))) {
+            matched.add(n.id);
+        }
+    });
+    
+    if (matched.size === 0) { 
+        noMatch.style.display = 'block'; 
+        nodeElements.attr('opacity', 0.1); 
+        labelElements.style('opacity', 0.1); 
+        linkElements.attr('opacity', 0.05); 
+        return; 
+    }
+    
+    noMatch.style.display = 'none';
+    nodeElements.attr('opacity', n => matched.has(n.id) ? 1 : 0.1);
+    linkElements.attr('opacity', l => {
+        const s = typeof l.source === 'object' ? l.source.id : l.source;
+        const t = typeof l.target === 'object' ? l.target.id : l.target;
+        return matched.has(s) && matched.has(t) ? 1 : 0.05;
+    });
+    labelElements.style('opacity', n => matched.has(n.id) ? 1 : 0.1);
+}
+
+// 窗口大小变化处理
+window.addEventListener('resize', () => {
+    const w = document.getElementById('graphContainer').offsetWidth;
+    const h = document.getElementById('graphContainer').offsetHeight;
+    
+    svg.attr('width', w).attr('height', h);
+    simulation.force('center', d3.forceCenter(w/2, h/2));
+    simulation.alpha(0.3).restart();
+});
+
+// 初始化
+init();
+</script>
+</body>
+</html>
