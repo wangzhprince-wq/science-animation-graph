@@ -1,60 +1,51 @@
- if(isPlaying) {
- playBtn.innerText = '⏸';
- playBtn.classList.add('playing');
- 
- // 如果已经播到底了，从头开始
- if(slider.value >= sortedTimes.length - 1) {
- slider.value = 0;
- }
+(() => {
+                let val = parseInt(slider.value);
+                if(val < sortedTimes.length - 1) {
+                    val++;
+                    slider.value = val;
+                    updateGraph(val);
+                } else {
+                    // 播放完毕停止
+                    playBtn.click(); 
+                }
+            }, 1500); // 🌟 这里控制播放速度，1.5秒弹出一个新事件节点
+        } else {
+            playBtn.innerText = '▶';
+            playBtn.classList.remove('playing');
+            clearInterval(playInterval);
+        }
+    });
 
- playInterval = setInterval(() => {
- let val = parseInt(slider.value);
- if(val < sortedTimes.length - 1) {
- val++;
- slider.value = val;
- updateGraph(val);
- } else {
- // 播放完毕停止
- playBtn.click(); 
- }
- }, 1500); // 🌟 这里控制播放速度，1.5秒弹出一个新事件节点
- } else {
- playBtn.innerText = '▶';
- playBtn.classList.remove('playing');
- clearInterval(playInterval);
- }
- });
-
- slider.addEventListener('input', (e) => {
- updateGraph(parseInt(e.target.value));
- });
+    slider.addEventListener('input', (e) => {
+        updateGraph(parseInt(e.target.value));
+    });
 }
 
 // 时间文本格式化
 function updateTimeDisplay(time) {
- let str = "";
- if (time === -9999999999) {
- str = "远古时期";
- } else if (time < 0) {
- let absTime = Math.abs(time);
- if (absTime >= 100000000) str = (absTime / 100000000).toFixed(1) + " 亿年前";
- else if (absTime >= 10000) str = (absTime / 10000).toFixed(1) + " 万年前";
- else str = absTime + " 年前";
- } else {
- str = time + " 年";
- }
- document.getElementById('time-display').innerText = str;
+    let str = "";
+    if (time === -9999999999) {
+        str = "远古时期";
+    } else if (time < 0) {
+        let absTime = Math.abs(time);
+        if (absTime >= 100000000) str = (absTime / 100000000).toFixed(1) + " 亿年前";
+        else if (absTime >= 10000) str = (absTime / 10000).toFixed(1) + " 万年前";
+        else str = absTime + " 年前";
+    } else {
+        str = time + " 年";
+    }
+    document.getElementById('time-display').innerText = str;
 }
 
 // 5. 辅助 UI 功能保持不变
 function showInfo(d) {
- const panel = document.getElementById('infoPanel');
- document.getElementById('panelTitle').textContent = d.label;
- document.getElementById('panelType').textContent = d.type;
- document.getElementById('panelType').style.background = typeBgColors[d.type] || 'rgba(136,136,136,0.15)';
- document.getElementById('panelType').style.color = typeColors[d.type] || '#888';
- document.getElementById('panelDesc').textContent = d.desc || '无描述';
- panel.classList.add('visible');
+    const panel = document.getElementById('infoPanel');
+    document.getElementById('panelTitle').textContent = d.label;
+    document.getElementById('panelType').textContent = d.type;
+    document.getElementById('panelType').style.background = typeBgColors[d.type] || 'rgba(136,136,136,0.15)';
+    document.getElementById('panelType').style.color = typeColors[d.type] || '#888';
+    document.getElementById('panelDesc').textContent = d.desc || '无描述';
+    panel.classList.add('visible');
 }
 
 function closePanel() { document.getElementById('infoPanel').classList.remove('visible'); }
@@ -62,9 +53,9 @@ function toggleLabels() { showLabels = !showLabels; labelElements.style('display
 function resetView() { svg.transition().duration(600).call(d3.zoom().transform, d3.zoomIdentity); }
 
 window.addEventListener('resize', () => {
- svg.attr('width', window.innerWidth).attr('height', window.innerHeight);
- simulation.force('center', d3.forceCenter(window.innerWidth/2, window.innerHeight/2));
- simulation.alpha(0.3).restart();
+    svg.attr('width', window.innerWidth).attr('height', window.innerHeight);
+    simulation.force('center', d3.forceCenter(window.innerWidth/2, window.innerHeight/2));
+    simulation.alpha(0.3).restart();
 });
 
 // 启动
