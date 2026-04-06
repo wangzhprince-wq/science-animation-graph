@@ -1,0 +1,23 @@
+000000 ? `${Math.abs(time)/1000000000}亿年前` : `${Math.abs(time)/1000000}百万年前`) : `${time}年`);
+            document.getElementById('time-display').innerText = str;
+        }
+
+        // 页面加载完成后初始化
+        window.addEventListener('load', init);
+        window.addEventListener('resize', () => {
+            const w = window.innerWidth, h = window.innerHeight;
+            svg?.attr('width', w).attr('height', h);
+            simulation?.force('center', d3.forceCenter(w/2, h/2));
+        });
+
+        // 添加节点点击事件
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                d3.selectAll('circle.node').on('click', function(e, d) {
+                    alert(`点击了节点: ${d.label}\n类型: ${d.type}\n时间: ${d.time}\n描述: ${d.desc}`);
+                });
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
