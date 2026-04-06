@@ -1,0 +1,26 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor files
+*.swp
+*~
+*.sublime-*
+
+# Node modules
+node_modules/
+
+# Logs
+*.log
+
+# Temporary files
+tmp/
+temp/
+
+# Obsidian files (if any)
+.obsidian/
