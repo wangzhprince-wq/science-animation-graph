@@ -102,6 +102,24 @@ async function init() {
     try {
         const resp = await fetch('graph.json');
         graphData = await resp.json();
+        
+        // 数据校验层：过滤掉引用了不存在节点的边
+        const nodeIds = new Set(graphData.nodes.map(n => n.id));
+        const validEdges = graphData.edges.filter(e => {
+            const src = typeof e.source === 'object' ? e.source.id : e.source;
+            const tgt = typeof e.target === 'object' ? e.target.id : e.target;
+            if (!nodeIds.has(src)) {
+                console.warn('过滤非法边（source不存在）:', src);
+                return false;
+            }
+            if (!nodeIds.has(tgt)) {
+                console.warn('过滤非法边（target不存在）:', tgt);
+                return false;
+            }
+            return true;
+        });
+        graphData.edges = validEdges;
+        
         render();
     } catch(e) {
         document.body.innerHTML = '<p style="color:#e74c3c;padding:40px">图谱加载失败: ' + e.message + '</p>';
