@@ -1,3 +1,197 @@
+.alphaTarget(0.3).restart(); 
+                                d.fx = d.x; d.fy = d.y; 
+                            })
+                            .on('drag', (e,d) => { 
+                                d.fx = e.x; d.fy = e.y; 
+                            })
+                            .on('end', (e,d) => { 
+                                e.active && simulation.alphaTarget(0); 
+                                d.fx = null; d.fy = null; 
+                            }));
+                    
+                    // 淡入动画
+                    circle.transition().duration(800).attr('opacity', 0.85);
+                    
+                    // 事件节点特效
+                    if (circle.filter(d => d.type === 'event').size() > 0) {
+                        circle.filter(d => d.type === 'event')
+                            .transition().duration(200)
+                            .attr('r', 30)
+                            .attr('stroke', '#fff')
+                            .attr('stroke-width', 5)
+                            .transition().duration(1000)
+                            .attr('r', 14)
+                            .attr('stroke', typeColors['event'])
+                            .attr('stroke-width', 2);
+                    }
+                    
+                    return circle;
+                },
+                update => update,
+                exit => exit.remove()
+            );
+            
+            // 更新标签
+            labelElements = g.selectAll('text')
+                .data(visibleNodes, d => d.id);
+            
+            labelElements.join(
+                enter => enter.append('text')
+                    .text(d => d.label)
+                    .attr('font-size', 11)
+                    .attr('fill', 'rgba(255,255,255,0.8)')
+                    .attr('text-anchor', 'middle')
+                    .attr('dy', 22)
+                    .attr('opacity', 0)
+                    .style('display', showLabels ? null : 'none')
+                    .call(enter => enter.transition().duration(800).attr('opacity', 1)),
+                update => update.style('display', showLabels ? null : 'none'),
+                exit => exit.remove()
+            );
+            
+            // 更新物理模拟
+            simulation.nodes(visibleNodes);
+            simulation.force('link').links(visibleLinks);
+            simulation.alpha(0.3).restart();
+            
+            // 更新滑块
+            document.getElementById('time-slider').value = timeIndex;
+        }
+        
+        // 4. 控制设置
+        function setupControls() {
+            const playBtn = document.getElementById('play-btn');
+            const slider = document.getElementById('time-slider');
+            
+            playBtn.addEventListener('click', () => {
+                isPlaying = !isPlaying;
+                
+                if (isPlaying) {
+                    playBtn.textContent = '⏸';
+                    playBtn.classList.add('playing');
+                    
+                    // 如果到底了，从头开始
+                    if (slider.value >= sortedTimes.length - 1) {
+                        slider.value = 0;
+                    }
+                    
+                    playInterval = setInterval(() => {
+                        let value = parseInt(slider.value);
+                        if (value < sortedTimes.length - 1) {
+                            value++;
+                            slider.value = value;
+                            updateGraph(value);
+                        } else {
+                            // 播放完毕
+                            playBtn.click();
+                        }
+                    }, 1500);
+                } else {
+                    playBtn.textContent = '▶';
+                    playBtn.classList.remove('playing');
+                    clearInterval(playInterval);
+                }
+            });
+            
+            slider.addEventListener('input', (event) => {
+                if (!isPlaying) {
+                    updateGraph(parseInt(event.target.value));
+                }
+            });
+        }
+        
+        // 5. 信息面板
+        function showInfo(d) {
+            const panel = document.getElementById('infoPanel');
+            document.getElementById('panelTitle').textContent = d.label;
+            document.getElementById('panelType').textContent = d.type;
+            document.getElementById('panelType').style.background = typeBgColors[d.type] || 'rgba(136,136,136,0.15)';
+            document.getElementById('panelType').style.color = typeColors[d.type] || '#888';
+            document.getElementById('panelDesc').textContent = d.desc || '暂无描述';
+            
+            // 查找关联边
+            const visibleNodeIds = new Set(allNodes.filter(n => n.time <= sortedTimes[currentTimeIndex]).map(n => n.id));
+            const conns = allLinks.filter(e => {
+                const s = typeof e.source === 'object' ? e.source.id : e.source;
+                const t = typeof e.target === 'object' ? e.target.id : e.target;
+                return (s === d.id || t === d.id) && visibleNodeIds.has(s) && visibleNodeIds.has(t);
+            });
+            
+            document.getElementById('panelConn').textContent = conns.length > 0
+                ? '关联: ' + conns.map(c => {
+                    const other = c.source.id === d.id ? c.target : c.source;
+                    return other.label + '(' + (c.relation || '关联') + ')';
+                  }).join(' | ')
+                : '无关联';
+            
+            panel.classList.add('visible');
+        }
+        
+        function closePanel() { 
+            document.getElementById('infoPanel').classList.remove('visible'); 
+        }
+        
+        function toggleLabels() { 
+            showLabels = !showLabels; 
+            labelElements.style('display', showLabels ? null : 'none'); 
+        }
+        
+        function resetView() { 
+            svg.transition().duration(600).call(d3.zoom().transform, d3.zoomIdentity); 
+        }
+        
+        // 6. 更新时间显示
+        function updateTimeDisplay(time) {
+            let display = '';
+            
+            if (time === -9999999999) {
+                display = '远古时期';
+            } else if (time < 0) {
+                const absTime = Math.abs(time);
+                if (absTime >= 100000000) {
+                    display = (absTime / 100000000).toFixed(1) + ' 亿年前';
+                } else if (absTime >= 10000) {
+                    display = (absTime / 10000).toFixed(1) + ' 万年前';
+                } else {
+                    display = absTime + ' 年前';
+                }
+            } else {
+                display = time + ' 年';
+            }
+            
+            document.getElementById('time-display').textContent = display;
+        }
+        
+        // 7. 窗口大小变化
+        window.addEventListener('resize', () => {
+            svg.attr('width', window.innerWidth)
+               .attr('height', window.innerHeight);
+            
+            simulation.force('center', d3.forceCenter(
+                window.innerWidth / 2, 
+                window.innerHeight / 2
+            ));
+            
+            simulation.alpha(0.3).restart();
+        });
+        
+        // 8. 物理模拟更新
+        simulation.on('tick', () => {
+            linkElements
+                .attr('x1', d => d.source.x)
+                .attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x)
+                .attr('y2', d => d.target.y);
+            
+            nodeElements
+                .attr('cx', d => d.x)
+                .attr('cy', d => d.y);
+            
+            labelElements
+                .attr('x', d => d.x)
+                .attr('y', d => d.y);
+        });
+        
         // 启动
         window.addEventListener('DOMContentLoaded', init);
     </script>
