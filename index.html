@@ -100,7 +100,7 @@ const typeBgColors = {
 
 async function init() {
     try {
-        const resp = await fetch('./graph.json');
+        const resp = await fetch('graph.json');
         graphData = await resp.json();
         render();
     } catch(e) {
@@ -174,7 +174,11 @@ function showInfo(d) {
     document.getElementById('panelType').style.background = typeBgColors[d.type] || 'rgba(136,136,136,0.15)';
     document.getElementById('panelType').style.color = typeColors[d.type] || '#888';
     document.getElementById('panelDesc').textContent = d.desc || '无描述';
-    const conns = graphData.edges.filter(e => e.source.id === d.id || e.target.id === d.id);
+    const conns = graphData.edges.filter(e => {
+        const s = typeof e.source === 'object' ? e.source.id : e.source;
+        const t = typeof e.target === 'object' ? e.target.id : e.target;
+        return s === d.id || t === d.id;
+    });
     document.getElementById('panelConn').textContent = conns.length > 0
         ? '关联: ' + conns.map(c => {
             const other = c.source.id === d.id ? c.target : c.source;
