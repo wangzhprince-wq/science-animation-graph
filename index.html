@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>科普动画知识图谱 · 地理地质</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; background: #0a0d14; color: #e8e8e8; overflow: hidden; }
+        #graph { width: 100vw; height: 100vh; }
+        .nodetag { position: absolute; background: rgba(10,13,20,0.92); border-radius: 20px; padding: 6px 14px; font-size: 13px; color: #fff; pointer-events: none; white-space: nowrap; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(8px); transition: opacity 0.2s; }
+        .legend { position: fixed; top: 20px; left: 20px; background: rgba(10,13,20,0.9); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 16px 20px; font-size: 12px; z-index: 10; backdrop-filter: blur(12px); max-width: 200px; }
+        .legend h3 { color: #fff; margin-bottom: 12px; font-size: 14px; }
+        .legend-item { display: flex; align-items: center; gap: 8px; margin: 6px 0; color: rgba(255,255,255,0.7); }
+        .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+        .title-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(10,13,20,0.9); border: 1px solid rgba(255,255,255,0.08); border-radius: 30px; padding: 12px 28px; font-size: 13px; color: rgba(255,255,255,0.5); z-index: 10; backdrop-filter: blur(12px); text-align: center; }
+        .title-bar strong { color: #4ecdc4; }
+        .controls { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 8px; z-index: 10; }
+        .ctrl-btn { background: rgba(10,13,20,0.9); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px 14px; color: rgba(255,255,255,0.6); font-size: 12px; cursor: pointer; transition: all 0.2s; }
+        .ctrl-btn:hover { background: rgba(78,205,196,0.15); border-color: rgba(78,205,196,0.3); color: #4ecdc4; }
+        .info-panel { position: fixed; top: 20px; right: 20px; width: 280px; background: rgba(10,13,20,0.92); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 20px; font-size: 13px; z-index: 10; backdrop-filter: blur(12px); display: none; }
+        .info-panel.visible { display: block; }
+        .info-panel h3 { color: #4ecdc4; margin-bottom: 10px; font-size: 15px; }
+        .info-panel .type-tag { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; margin-bottom: 10px; }
+        .info-panel .desc { color: rgba(255,255,255,0.6); line-height: 1.6; }
+        .info-panel .connections { margin-top: 12px; color: rgba(255,255,255,0.4); font-size: 12px; }
+        .info-panel .close-btn { position: absolute; top: 12px; right: 12px; background: none; border: none; color: rgba(255,255,255,0.4); cursor: pointer; font-size: 18px; }
+        .search-box { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 10; }
+        .search-box input { background: rgba(10,13,20,0.9); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 8px 18px; color: #fff; font-size: 13px; width: 260px; outline: none; backdrop-filter: blur(12px); }
+        .search-box input:focus { border-color: rgba(78,205,196,0.4); }
+        .search-box input::placeholder { color: rgba(255,255,255,0.3); }
+        .no-match { color: rgba(255,255,255,0.3); font-size: 12px; margin-top: 6px; text-align: center; }
+    </style>
+</head>
+<body>
+
+<div class="legend">
+    <h3>图例</h3>
+    <div class="legend-item"><span class="legend-dot" style="background:#4ecdc4"></span>概念</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#f5a623"></span>人物</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#ff6b9d"></span>书籍</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#9b59b6"></span>事件</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#3498db"></span>集数</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#e74c3c"></span>素材/媒体</div>
+</div>
+
+<div class="search-box">
+    <input type="text" id="searchInput" placeholder="搜索节点..." oninput="searchNodes(this.value)">
+    <div class="no-match" id="noMatch" style="display:none">无匹配结果</div>
+</div>
+
+<div class="info-panel" id="infoPanel">
+    <button class="close-btn" onclick="closePanel()">×</button>
+    <h3 id="panelTitle">-</h3>
+    <span class="type-tag" id="panelType">-</span>
+    <p class="desc" id="panelDesc">-</p>
+    <div class="connections" id="panelConn">-</div>
+</div>
+
+<div class="controls">
+    <button class="ctrl-btn" onclick="toggleLabels()">切换标签</button>
+    <button class="ctrl-btn" onclick="resetView()">重置视角</button>
+    <button class="ctrl-btn" onclick="filterType('')">全部</button>
+    <button class="ctrl-btn" onclick="filterType('concept')">概念</button>
+    <button class="ctrl-btn" onclick="filterType('person')">人物</button>
+    <button class="ctrl-btn" onclick="filterType('media')">素材</button>
+</div>
+
+<div class="title-bar">
+    科普动画知识图谱 · 地理地质 &nbsp;|&nbsp; <strong>拖动</strong> 节点 &nbsp;|&nbsp; <strong>滚轮</strong> 缩放 &nbsp;|&nbsp; <strong>点击</strong> 查看详情
+</div>
+
+<svg id="graph"></svg>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script>
+let graphData;
+let svg, g, simulation, nodes, links, labels;
+let showLabels = true;
+let currentFilter = '';
+let nodeElements, linkElements;
+
+const typeColors = {
+    concept: '#4ecdc4',
+    person: '#f5a623',
+    book: '#ff6b9d',
+    event: '#9b59b6',
+    episode: '#3498db',
+    media: '#e74c3c'
+};
+
+const typeBgColors = {
+    concept: 'rgba(78,205,196,0.15)',
+    person: 'rgba(245,166,35,0.15)',
+    book: 'rgba(255,107,157,0.15)',
+    event: 'rgba(155,89,182,0.15)',
+    episode: 'rgba(52,152,219,0.15)',
+    media: 'rgba(231,76,60,0.15)'
+};
+
+async function init() {
+    try {
+        const resp = await fetch('./graph.json');
+        graphData = await resp.json();
+        render();
+    } catch(e) {
+        document.body.innerHTML = '<p style="color:#e74c3c;padding:40px">图谱加载失败: ' + e.message + '</p>';
+    }
+}
+
+function render() {
+    const w = window.innerWidth, h = window.innerHeight;
+    svg = d3.select('#graph').attr('width', w).attr('height', h);
+
+    const defs = svg.append('defs');
+    defs.append('marker').attr('id','arrow').attr('viewBox','0 -4 8 8')
+        .attr('refX',18).attr('refY',0).attr('markerWidth',6).attr('markerHeight',6)
+        .attr('orient','auto').append('path')
+        .attr('d','M0,-4L8,0L0,4').attr('fill','rgba(255,255,255,0.15)');
+
+    g = svg.append('g');
+
+    const zoom = d3.zoom().scaleExtent([0.15, 4]).on('zoom', e => g.attr('transform', e.transform));
+    svg.call(zoom);
+
+    simulation = d3.forceSimulation(graphData.nodes)
+        .force('link', d3.forceLink(graphData.edges).id(d => d.id).distance(100).strength(0.4)))
+        .force('charge', d3.forceManyBody().strength(-280))
+        .force('center', d3.forceCenter(w/2, h/2))
+        .force('collision', d3.forceCollide().radius(d => typeColors[d.type] ? 35 : 25));
+
+    links = g.append('g').selectAll('line').data(graphData.edges).enter()
+        .append('line').attr('stroke', 'rgba(255,255,255,0.12)').attr('stroke-width', 1.5)
+        .attr('marker-end', 'url(#arrow)');
+
+    nodes = g.append('g').selectAll('circle').data(graphData.nodes).enter()
+        .append('circle')
+        .attr('r', d => d.type === 'episode' ? 14 : d.type === 'person' ? 12 : 10)
+        .attr('fill', d => typeColors[d.type] || '#888')
+        .attr('stroke', d => typeColors[d.type] || '#888')
+        .attr('stroke-width', 2)
+        .attr('stroke-opacity', 0.7)
+        .attr('opacity', d => d.type === 'episode' ? 0.6 : 0.85)
+        .attr('cursor', 'pointer')
+        .call(d3.drag()
+            .on('start', (e,d) => { e.active && simulation.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+            .on('drag', (e,d) => { d.fx = e.x; d.fy = e.y; })
+            .on('end', (e,d) => { e.active && simulation.alphaTarget(0); d.fx = null; d.fy = null; }))
+        .on('click', (e, d) => showInfo(d))
+        .on('mouseover', (e, d) => highlight(d))
+        .on('mouseout', () => resetHighlight());
+
+    labels = g.append('g').selectAll('text').data(graphData.nodes).enter()
+        .append('text').text(d => d.label)
+        .attr('font-size', d => d.type === 'episode' ? 11 : 10)
+        .attr('fill', 'rgba(255,255,255,0.7)')
+        .attr('text-anchor', 'middle')
+        .attr('dy', d => d.type === 'episode' ? 26 : 20)
+        .attr('pointer-events', 'none')
+        .style('display', showLabels ? null : 'none');
+
+    simulation.on('tick', () => {
+        links.attr('x1', d => d.source.x).attr('y1', d => d.source.y)
+             .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+        nodes.attr('cx', d => d.x).attr('cy', d => d.y);
+        labels.attr('x', d => d.x).attr('y', d => d.y);
+    });
+}
+
+function showInfo(d) {
+    const panel = document.getElementById('infoPanel');
+    document.getElementById('panelTitle').textContent = d.label;
+    document.getElementById('panelType').textContent = d.type;
+    document.getElementById('panelType').style.background = typeBgColors[d.type] || 'rgba(136,136,136,0.15)';
+    document.getElementById('panelType').style.color = typeColors[d.type] || '#888';
+    document.getElementById('panelDesc').textContent = d.desc || '无描述';
+    const conns = graphData.edges.filter(e => e.source.id === d.id || e.target.id === d.id);
+    document.getElementById('panelConn').textContent = conns.length > 0
+        ? '关联: ' + conns.map(c => {
+            const other = c.source.id === d.id ? c.target : c.source;
+            return other.label + '(' + c.relation + ')';
+          }).join(' | ')
+        : '无关联';
+    panel.classList.add('visible');
+}
+
+function closePanel() { document.getElementById('infoPanel').classList.remove('visible'); }
+
+function highlight(d) {
+    const connected = new Set([d.id]);
+    graphData.edges.forEach(e => {
+        if (e.source.id === d.id) connected.add(e.target.id);
+        if (e.target.id === d.id) connected.add(e.source.id);
+    });
+    nodes.attr('opacity', n => connected.has(n.id) ? 1 : 0.2);
+    links.attr('opacity', l => l.source.id === d.id || l.target.id === d.id ? 1 : 0.05);
+    labels.style('opacity', l => connected.has(l.id) ? 1 : 0.1);
+}
+
+function resetHighlight() {
+    nodes.attr('opacity', d => currentFilter && d.type !== currentFilter ? 0.15 : d.type === 'episode' ? 0.6 : 0.85);
+    links.attr('opacity', 1);
+    labels.style('opacity', showLabels ? null : 'none');
+}
+
+function toggleLabels() {
+    showLabels = !showLabels;
+    labels.style('display', showLabels ? null : 'none');
+}
+
+function resetView() {
+    svg.transition().duration(600).call(d3.zoom().transform, d3.zoomIdentity);
+}
+
+function filterType(type) {
+    currentFilter = type;
+    nodes.attr('opacity', d => type && d.type !== type ? 0.15 : d.type === 'episode' ? 0.6 : 0.85);
+    labels.style('opacity', d => {
+        if (type && d.type !== type) return 0.1;
+        return showLabels ? 1 : 0;
+    });
+}
+
+function searchNodes(q) {
+    const noMatch = document.getElementById('noMatch');
+    if (!q) { noMatch.style.display = 'none'; resetHighlight(); return; }
+    const qlower = q.toLowerCase();
+    const matched = new Set();
+    graphData.nodes.forEach(n => {
+        if (n.label.toLowerCase().includes(qlower) || (n.desc && n.desc.toLowerCase().includes(qlower))) {
+            matched.add(n.id);
+        }
+    });
+    if (matched.size === 0) { noMatch.style.display = 'block'; nodes.attr('opacity', 0.1); labels.style('opacity', 0.1); links.attr('opacity', 0.05); return; }
+    noMatch.style.display = 'none';
+    nodes.attr('opacity', n => matched.has(n.id) ? 1 : 0.1);
+    links.attr('opacity', l => matched.has(l.source.id) && matched.has(l.target.id) ? 1 : 0.05);
+    labels.style('opacity', n => matched.has(n.id) ? 1 : 0.1);
+}
+
+window.addEventListener('resize', () => {
+    svg.attr('width', window.innerWidth).attr('height', window.innerHeight);
+    simulation.force('center', d3.forceCenter(window.innerWidth/2, window.innerHeight/2));
+    simulation.alpha(0.3).restart();
+});
+
+init();
+</script>
+</body>
+</html>
