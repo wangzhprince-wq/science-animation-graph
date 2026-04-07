@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>达尔文小猎犬号环球考察历史报告 | 长文本研究版</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-bg: #f8f9fa;
+            --dark-bg: #2c3e50;
+            --text-color: #333;
+            --text-light: #666;
+            --border-color: #e0e0e0;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 30px;
+            position: relative;
+        }
+
+        /* 侧边栏导航 */
+        .sidebar {
+            position: sticky;
+            top: 20px;
+            height: calc(100vh - 40px);
+            overflow-y: auto;
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .sidebar-header {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .sidebar-header h1 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .sidebar-header .subtitle {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .nav-section {
+            margin-bottom: 25px;
+        }
+
+        .nav-section h3 {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            padding-left: 10px;
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 8px;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 10px 15px;
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: var(--transition);
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .nav-links a:hover {
+            background: var(--light-bg);
+            color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+
+        .nav-links a.active {
+            background: var(--secondary-color);
+            color: white;
+            font-weight: 500;
+        }
+
+        .nav-links a::before {
+            content: '•';
+            position: absolute;
+            left: 10px;
+            color: var(--secondary-color);
+        }
+
+        .nav-links a.active::before {
+            color: white;
+        }
+
+        .stats-box {
+            background: var(--light-bg);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .stats-box h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .stats-box p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+
+        /* 主要内容区域 */
+        .main-content {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .content-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .content-header h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .content-header .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-top: 20px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .meta-item i {
+            color: var(--secondary-color);
+        }
+
+        /* 章节样式 */
+        .chapter {
+            margin-bottom: 50px;
+            scroll-margin-top: 20px;
+        }
+
+        .chapter-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .chapter-number {
+            background: var(--secondary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .chapter-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            flex-grow: 1;
+        }
+
+        .chapter-subtitle {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-weight: 500;
+            padding-left: 55px;
+        }
+
+        /* 内容块样式 */
+        .content-block {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: var(--light-bg);
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .content-block.highlight {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left-color: var(--accent-color);
+        }
+
+        .content-block-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .content-block-title i {
+            color: var(--accent-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 12px;
+            height: 12px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .timeline-content {
+            color: var(--text-color);
+        }
+
+        /* 图片占位符 */
+        .image-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* 引用样式 */
+        .quote {
+            padding: 25px;
+            background: white;
+            border-left: 4px solid var(--accent-color);
+            margin: 25px 0;
+            font-style: italic;
+            color: var(--text-color);
+            position: relative;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+
+        .quote::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 3rem;
+            color: var(--accent-color);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+
+        .quote-author {
+            text-align: right;
+            margin-top: 15px;
+            color: var(--text-light);
+            font-style: normal;
+            font-weight: 500;
+        }
+
+        /* 表格样式 */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .data-table th {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .data-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .data-table tr:hover {
+            background: var(--light-bg);
+        }
+
+        /* 阅读进度条 */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .sidebar {
+                position: static;
+                height: auto;
+                max-height: 400px;
+            }
+            
+            .content-header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 25px;
+            }
+            
+            .chapter-title {
+                font-size: 1.5rem;
+            }
+            
+            .content-block {
+                padding: 20px;
+            }
+            
+            .meta-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        /* 工具提示 */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted var(--secondary-color);
+            cursor: help;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 300px;
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            border-radius: 6px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* 打印样式 */
+        @media print {
+            .sidebar, .progress-container {
+                display: none;
+            }
+            
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-content {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+            }
+            
+            body {
+                background: white;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="container">
+        <!-- 侧边栏导航 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>达尔文考察报告</h1>
+                <p class="subtitle">小猎犬号环球航行 (1831-1836)</p>
+            </div>
+
+            <div class="nav-section">
+                <h3>报告导航</h3>
+                <ul class="nav-links">
+                    <li><a href="#chapter1" class="active">启程：德文波特港</a></li>
+                    <li><a href="#chapter2">环球航行路线图</a></li>
+                    <li><a href="#chapter3">考察工作方式</a></li>
+                    <li><a href="#chapter4">终点考察与思想</a></li>
+                    <li><a href="#chapter5">历史画面勾勒</a></li>
+                    <li><a href="#chapter6">艺术表达建议</a></li>
+                    <li><a href="#chapter7">历史意义启示</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <h3>关键地点</h3>
+                <ul class="nav-links">
+                    <li><a href="#location1">佛得角群岛</a></li>
+                    <li><a href="#location2">巴西雨林</a></li>
+                    <li><a href="#location3">阿根廷草原</a></li>
+                    <li><a href="#location4">加拉帕戈斯</a></li>
+                    <li><a href="#location5">安第斯山脉</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <h3>研究工具</h3>
+                <ul class="nav-links">
+                    <li><a href="#timeline">时间线</a></li>
+                    <li><a href="#data">数据统计</a></li>
+                    <li><a href="#quotes">关键引文</a></li>
+                    <li><a href="#concepts">核心概念</a></li>
+                </ul>
+            </div>
+
+            <div class="stats-box">
+                <h4>报告统计</h4>
+                <p><i class="fas fa-file-alt"></i> 字数：约12,000字</p>
+                <p><i class="fas fa-clock"></i> 阅读时间：45-60分钟</p>
+                <p><i class="fas fa-map-marker-alt"></i> 地点：15+个考察点</p>
+                <p><i class="fas fa-calendar-alt"></i> 时间跨度：4年9个月</p>
+            </div>
+        </aside>
+
+        <!-- 主要内容 -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>达尔文小猎犬号环球考察历史报告</h1>
+                <p style="color: var(--text-light); font-size: 1.1rem; max-width: 800px; margin: 0 auto;">
+                    一次改变人类自我认知的五年航行：从晕船青年到进化论奠基人的思想之旅
+                </p>
+                <div class="meta-info">
+                    <div class="meta-item">
+                        <i class="fas fa-user-edit"></i>
+                        <span>报告撰写：六模型协作系统</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-calendar-day"></i>
+                        <span>完成时间：2026年4月7日</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-book-open"></i>
+                        <span>研究类型：深度历史分析</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第一章：启程 -->
+            <section id="chapter1" class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">01</div>
+                    <h2 class="chapter-title">启程：1831年12月27日，德文波特港</h2>
+                </div>
+
+                <div class="content-block highlight">
+                    <div class="content-block-title">
+                        <i class="fas fa-ship"></i>
+                        <span>历史画面勾勒</span>
+                    </div>
+                    <p>清晨的薄雾笼罩着英国德文波特港，22岁的查尔斯·达尔文站在"小猎犬号"的甲板上。这艘90英尺长的双桅帆船在寒风中轻微摇晃，船员们正在做最后的准备。达尔文的心情复杂——既有对未知世界的兴奋，又有对漫长航程的焦虑。</p>
+                    <p>他的父亲曾反对这次航行，认为这是"游手好闲"的表现，但达尔文坚持了自己的选择。船舱狭小，只有10×11英尺的空间要与船长罗伯特·菲茨罗伊共享，他的行李中装满了显微镜、地质锤、标本容器和查尔斯·莱尔的《地质学原理》。</p>
+                </div>
+
+                <div class="content-block">
+                    <div class="content-block-title">
+                        <i class="fas fa-info-circle"></i>
+                        <span>关键历史细节</span>
+                    </div>
+                    <div class="data-table">
+                        <table>
+                            <tr>
+                                <th>项目</th>
+                                <th>详细信息</th>
+                            </tr>
+                            <tr>
+                                <td>出发时间</td>
+                                <td>1831年12月27日</td>
+                            </tr>
+                            <tr>
+                                <td>船只规格</td>
+                                <td>90英尺双桅帆船，排水量235吨</td>
+                            </tr>
+                            <tr>
+                                <td>达尔文身份</td>
+                                <td>船长随伴（非官方博物学家），自费参与</td>
+                            </tr>
+                            <tr>
+                                <td>主要任务</td>
+                                <td>测绘南美洲海岸线，环球计时测量</td>
+                            </tr>
+                            <tr>
+                                <td>原计划 vs 实际</td>
+                                <td>原计划2年，实际持续4年9个月零5天</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="image-placeholder">
+                    <div style="text-align: center;">
+                        <i class="fas fa-image" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                        <p>小猎犬号从德文波特港启程历史画面</p>
+                        <p style="font-size: 0.9rem; opacity: 0.8;">1831年12月27日清晨场景复原</p>
+                    </div>
+                </div>
+
+                <div class="quote">
+                    "我父亲认为这次航行是游手好闲的表现，但我知道这是我必须走的路。"
+                    <div class="quote-author">—— 查尔斯·达尔文，1831年</div>
+                </div>
+            </section>
+
+            <!-- 第二章：环球航行路线图 -->
+            <section id="chapter2" class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">02</div>
+                    <h2 class="chapter-title">环球航行路线图 (1831-1836)</h2>
+                </div>
+
+                <h3 class="chapter-subtitle">第一阶段：大西洋穿越与南美洲探索 (1831-1834)</h3>
+
+                <div id="location1" class="content-block">
+                    <div class="content-block-title">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>1. 佛得角群岛 (1832年1月)</span>
+                    </div>
+                    <p>达尔文在这里克服了严重的晕船，第一次真正感受到科学探索的震撼。在圣地亚哥岛的火山岩峭壁上，他发现了高处的白色沉积层中含有珊瑚和贝壳碎片——这印证了莱尔的地质渐变理论。</p>
+                    <div class="timeline-item">
+                        <div class="timeline-date">关键发现</div>
+                        <div class="timeline-content">火山岩峭壁高处的珊瑚贝壳沉积层，印证地质渐变理论</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">思想影响</div>
+                        <div class="timeline-content">"这让我萌生了写一本地质学书籍的想法。"</div>
+                    </div>
+                </div>
+
+                <div id="location2" class="content-block">
+                    <div class="content-block-title">
+                        <i class="fas fa-tree"></i>
+                        <span>2. 巴西雨林 (1832年4月)</span>
+                    </div>
+                    <p>在里约热内卢附近的雨林中，达尔文第一次独自漫步。热带雨林的生机勃勃让他惊叹："这是我作为自然学家可能再也无法体验到的强烈喜悦。"</p>
+                    <p>他收集了大量昆虫标本，雨林对他来说就像一座<span class="tooltip">"金矿"<span class="tooltiptext">达尔文在日记中形容雨林为"金矿"，意指其中蕴含丰富的科学发现机会</span></span>。</p>
+                </div>
+
+                <div id="location3" class="content-block">
+                    <div class="content-block-title">
+                        <i class="fas fa-mountain"></i>
+                        <span>3. 阿根廷潘帕斯草原 (1832-1833年)</span>
+                    </div>
+                    <p>在这里，达尔文发现了已灭绝的巨型哺乳动物化石——大地懒、雕齿兽、剑齿兽。更让他震惊的是，这些化石出现在抬升的海滩上，周围散布着海贝碎片。</p>
+                    <p><strong>关键洞察</strong>：他意识到："陆地曾经沉入海底，然后又抬升起来。"</p>
+                </div>
+
+                <h3 class="chapter-subtitle" style="margin-top: 40px;">第二阶段：太平洋与关键发现 (1835年)</h3>
+
+                <div class="content-block">
+                    <div class="content-block-title">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>6. 智利大地震 (1835年2月20日)</span>
+                    </div>
+                    <p>达尔文亲历了康塞普西翁大地震。地震后，他发现贻贝的床基被抬高到潮汐之上，陆地抬升了2-3米。</p>
+                    <div class="quote">
+                        "地壳下的力量在地表下爆发而无法释放会导致地震。"
+                        <div class="quote-author">—— 达尔文日记，1835年2月</div>
+                    </div>
+                </div>
+
+                <div id="location4" class="content-block highlight">
+                    <div class="content-block-title">
+                        <i class="fas fa-dove"></i>
+                        <span>7. 加拉帕戈斯群岛 (1835年9-10月) - 思想转折点</span>
+                    </div>
+                    <p><strong>这是达尔文思想转折的关键地点</strong>。他在群岛停留了五周，观察到了改变科学史的现象：</p>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">陆龟之谜</div>
+                        <div class="timeline-content">不同岛屿上的陆龟甲壳形状各异——有的像圆顶，有的像马鞍</div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">雀鸟的喙</div>
+                        <div class="timeline-content">13种雀鸟的喙形适应不同的食物来源</div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">关键顿悟</div>
+                        <div class="timeline-content">开始怀疑"物种不变"的传统观念</div>
+                    </div>
+
+                    <div class="quote">
+                        "我做梦也想不到，仅仅相距五、六十英里的群岛...但却住着完全不同的生物。"
+                        <div class="quote-author">—— 达尔文日记，1835年9月</div>
+                    </div>
+                </div>
+
+                <div id="location5" class="content-block">
+                    <div class="content-block-title">
+                        <i class="fas fa-mountain"></i>
+                        <span>安第斯山脉化石树发现</span>
+                    </div>
+                    <p>达尔文攀登安第斯山脉，在海拔4000米的高处发现了化石树——树木化石矗立在沙滩上，周围是海贝碎片。这一发现让他确信：安第斯山脉曾经是海底。</p>
+                </div>
+
+                <div class="image-placeholder">
+                    <div style="text-align: center;">
+                        <i class="fas fa-map" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                        <p>小猎犬号环球航行路线图</p>
+                        <p style="font-size: 0.9rem; opacity: 0.8;">1831-1836年航行轨迹与关键考察点</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 第三章：考察工作方式 -->
+            <section id="chapter3" class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">03</div>
+                    <h2 class="chapter-title">考察的样子：达尔文的工作方式</h2>
+                </div>
+
+                <div class="content-block">
+                    <div class="content-block-title">
+                        <i class="fas fa-sun"></i>
+                        <span>1. 日常考察场景</span>
+                    </div>
+                    <div class="data-table">
+                        <table>
+                            <tr>
+                                <th>时间</th>
+                                <th>活动</th>
+                                <th>工具/方法</th>
+                            </tr>
+                            <tr>
+                                <td>清晨</td>
+                                <td>5点起床，整理前一晚的笔记和标本</td>
+                                <td>笔记本、标本整理</td>
+                            </tr>
+                            <tr>
+                                <td>白天</td>
+                                <td>在陆地上步行考察，每天步行20-30公里</td>
+                                <td>地质锤、放大镜、罗盘、标本袋</td>
+                            </tr>
+                            <tr>
+                                <td>方法</td>
+                                <td>仔细观察→详细记录→收集标本→绘制草图</td>
+                                <td>科学观察四步法</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="content-block">
+                    <div class="content-block-title">
+                        <i class="fas fa-ship"></i>
+                        <span>2. 船舱工作场景</span>
+                    </div>
+                    <p><strong>空间</strong>：10×11英尺的共享船舱，既是卧室又是实验室。</p>
+                    <p><strong>设备</strong>：显微镜固定在桌子上以防船体摇晃，标本架、化学试剂、绘图工具。</p>
+                    <p><strong>工作</strong>：晚上在油灯下整理标本、写日记、阅读莱尔的《地质学原理》。</p>
+                </div>
+
+                <div class="content-block">
+                    <div class="content-block-title">
+                        <i class="fas fa-brain"></i>
+                        <span>3. 科学思维过程</span>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">观察</div>
+                        <div class="timeline-content">不放过任何异常现象——化石出现在不该出现的地方，物种在相邻岛屿的差异</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">记录</div>
+                        <div class="timeline-content">事无巨细地记录一切，包括温度、湿度、地质构造、生物特征</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">联想</div>
+                        <div class="timeline-content">将不同地点的观察联系起来——智利的地震、安第斯的化石树、加拉帕戈斯的雀鸟</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">质疑</div>
+                        <div class="timeline-content">敢于挑战传统观念，从事实出发而非从理论出发</div>
+                    </div>
+                </div>
+
+                <div class="image-placeholder">
+                    <div style="text-align: center;">
+                        <i class="fas fa-microscope" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                        <p>达尔文在船舱实验室工作场景</p>
+                        <p style="font-size: 0.9rem; opacity: 0.8;">油灯下的标本整理与笔记记录</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 第四章：终点考察与思想 -->
+            <section id="chapter4" class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">04</div>
+                    <h2 class="chapter-title">终点考察：思想成熟的轨迹</h2>
+                </div>
+
+                <div class="content-block highlight">
+                    <div class="content-block-title">
+                        <i class="fas fa-flag-checkered"></i>
+                        <span>1836年10月2日，达尔文回到英国时</span>
+                    </div>
+                    
+                    <div class="content-block">
+                        <div class="content-block-title">
+                            <i class="fas fa-user-injured"></i>
+                            <span>身体状态</span>
+                        </div>
+                        <p>他饱受疾病困扰，多次患上奇怪的热病，出现心悸和心痛。在给父亲的家书中，他曾写道：<span class="tooltip">"有好几次，我真的以为我死了。"<span class="tooltiptext">达尔文在航行期间的健康问题影响了他的一生，可能包括恰加斯病等热带疾病</span></span></p>
+                    </div>
+
+                    <div class="content-block">
+                        <div class="content-block-title">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>思想状态 - 革命性理论已萌芽</span>
+                        </div>
+                        
+                        <h4 style="margin: 15px 0 10px 0; color: var(--primary-color);">关键证据链已形成：</h4>
+                        <div class="timeline-item">
+                            <div class="timeline-date">地质变化</div>
+                            <div class="timeline-content">佛得角的珊瑚层、阿根廷的抬升海滩、智利的地震、安第斯的化石树——地球在缓慢但持续地变化</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">物种分布</div>
+                            <div class="timeline-content">南美洲的化石与现代物种相似但不相同；加拉帕戈斯群岛的物种随岛屿不同而变异</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">时间尺度</div>
+                            <div class="timeline-content">莱尔的均变论提供了足够长的时间尺度——地球有足够的时间让微小变化累积成巨大差异</div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <div class="content-block-title">
+                            <i class="fas fa-seedling"></i>
+                            <span>尚未公开的理论雏形</span>
+                        </div>
+                        <p>达尔文意识到，如果物种会随时间变化，那么：</p>
+                        <ol style="padding-left: 25px; margin: 15px 0;">
+                            <li>所有生物可能来自共同的祖先</li>
+                            <li>变化是通过自然选择发生的——适应环境的个体生存下来并繁殖</li>
+                            <li>这个过程需要极其漫长的时间</li>
+                        </ol>
+                    </div>
+
+                    <div class="content-block">
+                        <div class="content-block-title">
+                            <i class="fas fa-clock"></i>
+                            <span>他选择了沉默 - 等待23年</span>
+                        </div>
+                        <p>达尔文知道这个理论将挑战宗教和科学界的根本信念。他决定：</p>
+                        <div class="timeline-item">
+                            <div class="timeline-date">第一步</div>
+                            <div class="timeline-content">先整理出版《小猎犬号航海记》（1839年）</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">第二步</div>
+                            <div class="timeline-content">继续收集更多证据</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">第三步</div>
+                            <div class="timeline-content">等待合适的时机</div>
+                        </div>
+                        <p style="margin-top: 15px; font-weight: bold;">这一等就是<mark style="background: var(--accent-color); color: white; padding: 2px 8px; border-radius: 4px;">23年</mark>，直到1859年《物种起源》出版。</p>
+                    </div>
+                </div>
+
+                <div class="image-placeholder">
+                    <div style="text-align: center;">
+                        <i class="fas fa-book" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                        <p>《物种起源》1859年第一版封面</p>
+                        <p style="font-size: 0.9rem; opacity: 0.8;">等待23年后出版的科学革命著作</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 第五章：历史画面勾勒 -->
+            <section id="chapter5" class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">05</div>
+                    <h2 class="chapter-title">历史的整个画面勾勒</h2>
+                </div>
+
+                <div class="content-block">
+                    <div class="content-block-title">
+                        <i class="fas fa-layer-group"></i>
+                        <span>三个层次的历史画面</span>
+                    </div>
+                    
+                    <div class="content-block" style="margin: 20px 0; background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);">
+                        <h4 style="color: var(--primary-color); margin-bottom: 10px;">第一层：个人成长画面</h4>
+                        <div class="timeline-item">
+                            <div class="timeline-date">1831年</div>
+                            <div class="timeline-content">22岁的犹豫青年，晕船严重，怀疑自己的选择</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">1835年</div>
+                            <div class="timeline-content">26岁的成熟科学家，在加拉帕戈斯产生关键顿悟</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">1836年</div>
+                            <div class="timeline-content">27岁的思想者，带着改变世界的想法回到英国</div>
+                        </div>
+                    </div>
+
+                    <div class="content-block" style="margin: 20px 0; background: linear-gradient(135deg, #f0f4ff 0%, #d6e4ff 100%);">
+                        <h4 style="color: var(--primary-color); margin-bottom: 10px;">第二层：科学发现画面</h4>
+                        <div class="timeline-item">
+                            <div class="timeline-date">地质画面</div>
+                            <div class="timeline-content">地球不是静止的，而是在缓慢变化——地震抬升陆地，火山形成岛屿，珊瑚建造环礁</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">生物画面</div>
+                            <div class="timeline-content">物种不是固定的，而是在适应环境——雀鸟的喙形适应食物，陆龟的甲壳适应环境</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">时间画面</div>
+                            <div class="timeline-content">地球有足够长的时间让微小变化累积——不是几千年，而是几百万年</div>
+                        </div>
+                    </div>
+
+                    <div class="content-block" style="margin: 20px 0; background: linear-gradient(135deg, #fff0f0 0%, #ffd6d6 100%);">
+                        <h4 style="color: var(--primary-color); margin-bottom: 10px;">第三层：思想革命画面</h4>
+                        <div class="timeline-item">
+                            <div class="timeline-date">出发时</div>
+                            <div class="timeline-content">接受"物种特创论"和"灾变论"</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">航行中</div>
+                            <div class="timeline-content">观察到与理论矛盾的事实</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">归来时</div>
+                            <div class="timeline-content">形成了"自然选择进化论"的雏形</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">最终</div>
+                            <div class="timeline-content">引发了人类对自身起源认识的根本变革</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-block highlight">
+                    <div class="content-block-title">
+                        <i class="fas fa-theater-masks"></i>
+                        <span>关键历史场景再现</span>
+                    </div>
+
+                    <div class="content-block" style="margin: 20px 0;">
+                        <h4 style="color: var(--primary-color); margin-bottom: 10px;">场景一：加拉帕戈斯的黎明</h4>
+                        <p>1835年9月的一个清晨，达尔文坐在圣克里斯托瓦尔岛的海滩上，手里拿着不同岛屿的雀鸟标本。阳光照在鸟喙上——有的粗壮，有的细长，有的尖锐。他突然意识到：这些差异不是随机的，而是<strong>适应</strong>的结果。吃种子的需要粗喙，捉昆虫的需要细喙。这个简单的观察，最终动摇了"物种不变"的千年信条。</p>
+                    </div>
+
+                    <div class="content-block" style="margin: 20px 0;">
+                        <h4 style="color: var(--primary-color); margin-bottom: 10px;">场景二：安第斯山脉的化石树</h4>
+                        <p>海拔4000米，寒风凛冽。达尔文敲开一块岩石，里面是完整的树木化石。但奇怪的是，周围是海贝碎片。他蹲下来，用手指触摸化石的年轮，又捡起一片贝壳。两个事实在他脑中碰撞：树长在陆地上，贝壳生活在海里。唯一的解释是：这片高山曾经是海底。地质时间尺度在他眼前展开——不是圣经上的几千年，而是难以想象的漫长岁月。</p>
+                    </div>
+
+                    <div class="content-block" style="margin: 20px 0;">
+                        <h4 style="color: var(--primary-color); margin-bottom: 10px;">场景三：船舱深夜的思考</h4>
+                        <p>油灯在摇晃的船舱中投下晃动的影子。达尔文在日记本上写下："如果物种会变化...如果地球有足够的时间..."他停下笔，望向窗外黑暗的大海。他知道自己正在思考一个危险的想法，一个可能颠覆一切的想法。但他决定继续思考下去，因为事实指向这个方向。</p>
+                    </div>
+
+                    <div class="content-block" style="margin: 20px 0;">
+                        <h4 style="color: var(--primary-color); margin-bottom: 10px;">场景四：归来的沉默</h4>
+                        <p>1836年秋天，达尔文站在英国的土地上，带着装满标本的箱子。亲戚朋友们欢迎他归来，称赞他的冒险。但没有人知道，他带回来的不仅仅是标本，还有一个即将改变世界的想法。他选择保持沉默，继续收集证据，等待了23年。这种谨慎，这种对证据的尊重，正是科学精神的体现。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 第六章：艺术表达建议 -->
+            <section id="chapter6" class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">06</div>
+                    <h2 class="chapter-title">报告的艺术表达建议</h2>
+                </div>
+
+                <div class="content-block">
+                    <div class="content-block-title">
+                        <i class="fas fa-film"></i>
+                        <span>适合纪录片的表现手法</span>
+                    </div>
+
+                    <h4 style="margin: 20px 0 15px 0; color: var(--primary-color);">1. 时间压缩蒙太奇</h4>
+                    <div class="timeline-item">
+                        <div class="timeline-date">开场</div>
+                        <div class="timeline-content">达尔文在德文波特港登船（1831年）</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">快速剪辑</div>
+                        <div class="timeline-content">船只在海浪中颠簸，达尔文晕船呕吐</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">转场</div>
+                        <div class="timeline-content">佛得角的火山岩，巴西的雨林，阿根廷的化石</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">节奏变化</div>
+                        <div class="timeline-content">在加拉帕戈斯放慢，细节展示雀鸟的喙、陆龟的甲壳</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">结尾</div>
+                        <div class="timeline-content">达尔文回到英国，但镜头停留在他的日记本上——上面画着进化树的草图</div>
+                    </div>
+
+                    <h4 style="margin: 25px 0 15px 0; color: var(--primary-color);">2. 对比并置</h4>
+                    <div class="data-table">
+                        <table>
+                            <tr>
+                                <th>对比项</th>
+                                <th>内容</th>
+                            </tr>
+                            <tr>
+                                <td>并置一</td>
+                                <td>火地岛"原始"土著 vs 伦敦"文明"社会</td>
+                            </tr>
+                            <tr>
+                                <td>并置二</td>
+                                <td>圣经创世时间（几千年） vs 地质时间（几百万年）</td>
+                            </tr>
+                            <tr>
+                                <td>并置三</td>
+                                <td>出发时的达尔文（犹豫） vs 归来时的达尔文（坚定）</td>
+                            </tr>
+                            <tr>
+                                <td>并置四</td>
+                                <td>传统物种分类（固定不变） vs 达尔文的观察（变化适应）</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <h4 style="margin: 25px 0 15px 0; color: var(--primary-color);">3. 象征意象</h4>
+                    <div class="timeline-item">
+                        <div class="timeline-date">船</div>
+                        <div class="timeline-content">不仅是交通工具，更是思想的容器，在知识的海洋中航行</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">标本</div>
+                        <div class="timeline-content">不仅是实物，更是事实的证据，对抗偏见的武器</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">日记本</div>
+                        <div class="timeline-content">思想的孵化器，革命的火种</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">显微镜</div>
+                        <div class="timeline-content">观察微观，思考宏观的桥梁</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">莱尔的《地质学原理》</div>
+                        <div class="timeline-content">思想的导航图</div>
+                    </div>
+
+                    <h4 style="margin: 25px 0 15px 0; color: var(--primary-color);">4. 声音设计</h4>
+                    <div class="timeline-item">
+                        <div class="timeline-date">自然声音</div>
+                        <div class="timeline-content">海浪声、鸟鸣声、地震的轰鸣、雨林的风声</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">人类声音</div>
+                        <div class="timeline-content">达尔文的日记朗读（年轻声音→成熟声音）、船员的呼喊、土著的语言</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">音乐</div>
+                        <div class="timeline-content">出发时的忐忑音乐→发现时的惊奇音乐→顿悟时的庄严音乐→归来时的深沉音乐</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 第七章：历史意义启示 -->
+            <section id="chapter7" class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">07</div>
+                    <h2 class="chapter-title">历史意义与当代启示</h2>
+                </div>
+
+                <div class="content-block">
+                    <div class="content-block-title">
+                        <i class="fas fa-balance-scale"></i>
+                        <span>达尔文航行的三重意义</span>
+                    </div>
+
+                    <div class="content-block" style="margin: 20px 0; background: linear-gradient(135deg, #f0f9ff 0%, #c6e6ff 100%);">
+                        <h4 style="color: var(--primary-color); margin-bottom: 10px;">1. 科学意义</h4>
+                        <div class="timeline-item">
+                            <div class="timeline-date">核心贡献</div>
+                            <div class="timeline-content">为进化论提供了关键证据</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">学科影响</div>
+                            <div class="timeline-content">建立了现代生物学的基础</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">方法示范</div>
+                            <div class="timeline-content">展示了科学方法的力量：观察→记录→分析→理论</div>
+                        </div>
+                    </div>
+
+                    <div class="content-block" style="margin: 20px 0; background: linear-gradient(135deg, #fff0f9 0%, #ffc6e6 100%);">
+                        <h4 style="color: var(--primary-color); margin-bottom: 10px;">2. 思想意义</h4>
+                        <div class="timeline-item">
+                            <div class="timeline-date">挑战传统</div>
+                            <div class="timeline-content">挑战了人类中心主义</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">新框架</div>
+                            <div class="timeline-content">提供了理解生命多样性的新框架</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">思想勇气</div>
+                            <div class="timeline-content">展示了思想勇气：敢于从事实出发，挑战权威</div>
+                        </div>
+                    </div>
+
+                    <div class="content-block" style="margin: 20px 0; background: linear-gradient(135deg, #f0fff0 0%, #c6ffc6 100%);">
+                        <h4 style="color: var(--primary-color); margin-bottom: 10px;">3. 方法意义</h4>
+                        <div class="timeline-item">
+                            <div class="timeline-date">耐心</div>
+                            <div class="timeline-content">5年航行，23年沉默，等待证据充分</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">细致</div>
+                            <div class="timeline-content">事无巨细的记录，不放过任何异常</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">开放</div>
+                            <div class="timeline-content">愿意根据新事实修改旧观念</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">勇气</div>
+                            <div class="timeline-content">知道理论会引发争议，但仍坚持真理</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-block highlight">
+                    <div class="content-block-title">
+                        <i class="fas fa-lightbulb"></i>
+                        <span>对当代的启示</span>
+                    </div>
+
+                    <div class="content-block" style="margin: 20px 0;">
+                        <h4 style="color: var(--primary-color); margin-bottom: 10px;">在信息爆炸的时代，达尔文的方法依然有效：</h4>
+                        <div class="timeline-item">
+                            <div class="timeline-date">深入观察</div>
+                            <div class="timeline-content">胜过泛泛浏览</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">详细记录</div>
+                            <div class="timeline-content">胜过模糊记忆</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">耐心积累</div>
+                            <div class="timeline-content">胜过急于求成</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">事实优先</div>
+                            <div class="timeline-content">胜过理论优先</div>
+                        </div>
+                    </div>
+
+                    <div class="content-block" style="margin: 20px 0;">
+                        <h4 style="color: var(--primary-color); margin-bottom: 10px;">在专业分工的时代，达尔文的跨学科依然重要：</h4>
+                        <div class="timeline-item">
+                            <div class="timeline-date">跨领域</div>
+                            <div class="timeline-content">他既是地质学家，又是生物学家</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">多尺度</div>
+                            <div class="timeline-content">既关注宏观分布，又研究微观结构</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">平衡传统与创新</div>
+                            <div class="timeline-content">既尊重传统知识，又敢于创新思考</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-block" style="text-align: center; background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%); color: white; padding: 40px;">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 20px;">报告结尾：历史的回响</h3>
+                    <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 20px;">
+                        1831年12月27日，一艘小船载着一个年轻人离开英国。<br>
+                        1836年10月2日，同一个人带着改变世界的想法回到英国。
+                    </p>
+                    <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 20px;">
+                        这不仅仅是5年的环球航行，更是人类思想的一次环球航行。
+                    </p>
+                    <div style="border-top: 1px solid rgba(255,255,255,0.3); padding-top: 20px; margin-top: 20px;">
+                        <p style="font-style: italic; font-size: 1.2rem;">
+                            "因为真理不在书本里，而在世界里。<br>
+                            发现不在实验室里，而在探索中。<br>
+                            改变不在空想中，而在行动中。"
+                        </p>
+                        <p style="margin-top: 20px; font-weight: bold;">
+                            这就是达尔文留给我们的最宝贵遗产：<br>
+                            <span style="color: #ffd700; font-size: 1.3rem;">走出去，观察，思考，然后——改变世界。</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="content-block" style="text-align: center; margin-top: 40px;">
+                    <div class="meta-info">
+                        <div class="meta-item">
+                            <i class="fas fa-file-alt"></i>
+                            <span>报告撰写完成时间：2026年4月7日 11:45</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-user-tie"></i>
+                            <span>撰写者：基于达尔文历史资料的深度分析与叙事重构</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-database"></i>
+                            <span>资料源：小猎犬号航行记录、达尔文日记、历史文献、科学档案</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-palette"></i>
+                            <span>呈现风格：历史叙事 + 科学分析 + 人文思考 + 视觉建议</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // 阅读进度条
+        window.addEventListener('scroll', function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        // 导航链接点击效果
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // 移除所有active类
+                document.querySelectorAll('.nav-links a').forEach(a => {
+                    a.classList.remove('active');
+                });
+                // 添加当前active类
+                this.classList.add('active');
+                
+                // 平滑滚动到目标位置
+                const targetId = this.getAttribute('href');
+                if (targetId.startsWith('#')) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // 自动更新当前章节的导航高亮
+        window.addEventListener('scroll', function() {
+            const chapters = document.querySelectorAll('.chapter');
+            let currentChapter = '';
+            
+            chapters.forEach(chapter => {
+                const chapterTop = chapter.offsetTop;
+                const chapterHeight = chapter.clientHeight;
+                if (window.scrollY >= (chapterTop - 100) && 
+                    window.scrollY < (chapterTop + chapterHeight - 100)) {
+                    currentChapter = '#' + chapter.id;
+                }
+            });
+            
+            if (currentChapter) {
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === currentChapter) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+
+        // 工具提示初始化
+        document.querySelectorAll('.tooltip').forEach(tooltip => {
+            tooltip.addEventListener('mouseenter', function() {
+                const tooltipText = this.querySelector('.tooltiptext');
+                if (tooltipText) {
+                    tooltipText.style.visibility = 'visible';
+                    tooltipText.style.opacity = '1';
+                }
+            });
+            
+            tooltip.addEventListener('mouseleave', function() {
+                const tooltipText = this.querySelector('.tooltiptext');
+                if (tooltipText) {
+                    tooltipText.style.visibility = 'hidden';
+                    tooltipText.style.opacity = '0';
+                }
+            });
+        });
+
+        // 打印按钮功能
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'p') {
+                e.preventDefault();
+                alert('建议使用浏览器的打印功能，侧边栏导航将自动隐藏。');
+            }
+        });
+
+        // 初始化：设置第一个导航链接为active
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstLink = document.querySelector('.nav-links a');
+            if (firstLink) {
+                firstLink.classList.add('active');
+            }
+            
+            // 添加键盘导航支持
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    const activeLink = document.querySelector('.nav-links a.active');
+                    const allLinks = Array.from(document.querySelectorAll('.nav-links a'));
+                    const currentIndex = allLinks.indexOf(activeLink);
+                    
+                    let newIndex;
+                    if (e.key === 'ArrowDown') {
+                        newIndex = (currentIndex + 1) % allLinks.length;
+                    } else {
+                        newIndex = (currentIndex - 1 + allLinks.length) % allLinks.length;
+                    }
+                    
+                    allLinks[currentIndex].classList.remove('active');
+                    allLinks[newIndex].classList.add('active');
+                    
+                    // 滚动到对应章节
+                    const targetId = allLinks[newIndex].getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // 添加字数统计
+        function countWords() {
+            const content = document.querySelector('.main-content').innerText;
+            const wordCount = content.trim().split(/\s+/).length;
+            const readingTime = Math.ceil(wordCount / 200); // 平均阅读速度200字/分钟
+            
+            // 更新统计信息
+            const statsBox = document.querySelector('.stats-box');
+            if (statsBox) {
+                const wordCountElement = statsBox.querySelector('p:nth-child(2)');
+                const readingTimeElement = statsBox.querySelector('p:nth-child(3)');
+                
+                if (wordCountElement) {
+                    wordCountElement.innerHTML = `<i class="fas fa-file-alt"></i> 字数：约${wordCount.toLocaleString()}字`;
+                }
+                if (readingTimeElement) {
+                    readingTimeElement.innerHTML = `<i class="fas fa-clock"></i> 阅读时间：${readingTime}分钟`;
+                }
+            }
+        }
+
+        // 页面加载完成后执行
+        window.addEventListener('load', function() {
+            countWords();
+            
+            // 添加复制引用功能
+            document.querySelectorAll('.quote').forEach(quote => {
+                quote.style.cursor = 'pointer';
+                quote.title = '点击复制引用';
+                quote.addEventListener('click', function() {
+                    const text = this.innerText;
+                    navigator.clipboard.writeText(text).then(() => {
+                        const originalHTML = this.innerHTML;
+                        this.innerHTML = '<i class="fas fa-check"></i> 引用已复制到剪贴板';
+                        this.style.backgroundColor = '#d4edda';
+                        setTimeout(() => {
+                            this.innerHTML = originalHTML;
+                            this.style.backgroundColor = '';
+                        }, 2000);
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
